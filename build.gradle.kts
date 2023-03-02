@@ -8,6 +8,7 @@ val kmongoVersion = "4.5.0"
 plugins {
     kotlin("multiplatform") version "1.8.0"
     application
+    kotlin("plugin.serialization") version "1.8.0"
 }
 
 group = "me.matt"

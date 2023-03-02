@@ -3,10 +3,13 @@ import csstype.ClassName
 import kotlinx.browser.document
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
 import org.w3c.dom.HTMLFormElement
+import org.w3c.dom.HTMLInputElement
 import react.FC
 import react.Props
+import react.dom.events.ChangeEventHandler
 import react.dom.events.FormEventHandler
 import react.dom.html.InputType
 import react.dom.html.ReactHTML.div
@@ -16,49 +19,56 @@ import react.dom.html.ReactHTML.label
 import react.useEffectOnce
 import react.useState
 
-private val scope = MainScope()
 
-const val ENTER = 1
-const val EXIT = 2
-
-var employees by useState(emptyList<Employee>())
-var events by useState(emptyList<TimeEvent>())
 
 val ClockPage = FC<Props> { props ->
-    useEffectOnce {
-        scope.launch {
-            employees = getEmployees()
-            events = getEvents()
-        }
+    val (idText, otherText) = useState("")
+    var employees by useState(emptyList<Employee>())
+    var events by useState(emptyList<TimeEvent>())
+    scope.launch {
+        employees = getEmployees()
+        events = getEvents()
     }
-    var idText = ""
-
     val submitHandler: FormEventHandler<HTMLFormElement> = {
+        it.preventDefault()
         var message = document.getElementById("message")!!
         message.innerHTML = ""
-        val employeeId: Long? = idText.toLong()
+        val employeeId: Long? = idText?.toLong()
 
         if (employeeId is Long) {
+
             var success: Boolean = false
             scope.launch {
-                success = LogEvent(employeeId)
-            }
-            if (success) {
-                var name = ""
-                for (employee: Employee in employees) {
-                    if (employee.id == employeeId) {
-                        name = employee.name
+                success = LogEvent(employeeId, employees, events)
+                if (success) {
+                    var name = ""
+                    for (employee: Employee in employees) {
+                        if (employee.id == employeeId) {
+                            name = employee.name
+                        }
                     }
+                    message.innerHTML = "<p>Thank you, ${name}!</p>"
+                } else {
+
+                    message.innerHTML =
+                        "<p>No employee with that ID exists. If the problem persists, please see your supervisor.</p>"
                 }
-                message.innerHTML = "<p>Thank you, ${name}!</p>"
-            } else {
-                message.innerHTML =
-                    "<p>No employee with that ID exists. If the problem persists, please see your supervisor.</p>"
             }
+
+        } else {
+            println("Long conversion failed.")
+            message.innerHTML =
+                "<p>Please enter a valid employee ID.</p>"
         }
+    }
+
+    val changeHandler: ChangeEventHandler<HTMLInputElement> = {
+        otherText(it.target.value)
     }
 
     form {
+        className = ClassName("container")
+        onSubmit = submitHandler
         label {
             htmlFor = "empid"
             +("Employee ID")
@@ -67,6 +77,7 @@ val ClockPage = FC<Props> { props ->
             className = ClassName("form-control form-control-lg")
             placeholder = "Employee ID"
             id = "empid"
+            onChange = changeHandler
             type = InputType.text
             value = idText
         }
@@ -78,11 +89,10 @@ val ClockPage = FC<Props> { props ->
     }
     div {
         id = "message"
+        className = ClassName("container")
     }
-
 }
-
-suspend fun LogEvent(id: Long): Boolean {
+suspend fun LogEvent(id: Long, employees: List<Employee>, events: List<TimeEvent>): Boolean {
     var found: Boolean = false
     for (employee: Employee in employees) {
         if (employee.id == id) {
@@ -105,7 +115,7 @@ suspend fun LogEvent(id: Long): Boolean {
         }
     }
 
-    val dateTime = LocalDateTime.toString()
+    val dateTime = Clock.System.now().toString()
 
     postEvent(TimeEvent(id, eventType, dateTime))
 

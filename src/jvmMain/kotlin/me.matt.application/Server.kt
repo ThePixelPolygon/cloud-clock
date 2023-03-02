@@ -30,7 +30,8 @@ fun HTML.index() {
     }
 }
 
-val employees = mutableListOf(Employee("Matthew Ganotisi", 1), Employee("Joaquin Pacia", 2))
+val employees = mutableListOf(Employee("Matthew Ganotisi", 1),
+    Employee("Joaquin Pacia", 2))
 val events = mutableListOf<TimeEvent>()
 
 fun main() {
@@ -64,6 +65,10 @@ fun Application.myApplicationModule() {
         route(TimeEvent.path) {
             get {
                 call.respond(events)
+            }
+            post {
+                events += call.receive<TimeEvent>()
+                call.respond(HttpStatusCode.OK)
             }
         }
         get("/") {
