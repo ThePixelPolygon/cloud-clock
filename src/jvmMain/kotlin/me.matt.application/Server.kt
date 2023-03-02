@@ -30,6 +30,8 @@ fun HTML.index() {
     }
 }
 
+
+// TODO: Remove hardcoded values, replace with MongoDB/MySQL instance.
 val employees = mutableListOf(Employee("Matthew Ganotisi", 1),
     Employee("Joaquin Pacia", 2))
 val events = mutableListOf<TimeEvent>()
