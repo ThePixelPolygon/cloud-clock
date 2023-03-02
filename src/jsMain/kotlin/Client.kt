@@ -35,21 +35,10 @@ fun main() {
     val modes = listOf("root", "clockroot", "adminroot")
     val mode = getmode(modes)
     println("Operating in mode $mode")
-    if (mode == 0) {
-        document.body!!.appendChild(container!!)
-        createRoot(container!!).render(Fragment.create {
-            div() {
-                className = ClassName("container")
-                h1 {
-                    +("Home Mode")
-                }
-            }
-        })
-    }
-    else if (mode == 1) {
-        document.body!!.appendChild(container!!)
-
-        createRoot(container!!).render(ClockPage.create())
+    when (mode) {
+        0 -> home()
+        1 -> clock()
+        2 -> admin()
     }
 }
 
@@ -63,10 +52,24 @@ fun getmode(modes: List<String>): Int {
 }
 
 fun home() {
-
+    document.body!!.appendChild(container!!)
+    createRoot(container!!).render(Fragment.create {
+        div() {
+            className = ClassName("container")
+            h1 {
+                +("Home Mode")
+            }
+        }
+    })
 }
 
 fun clock() {
+    document.body!!.appendChild(container!!)
 
+    createRoot(container!!).render(ClockPage.create())
 }
 
+fun admin() {
+    document.body!!.appendChild(container!!)
+    createRoot(container!!).render(logTable.create())
+}
