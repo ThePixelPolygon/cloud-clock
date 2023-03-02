@@ -5,18 +5,40 @@ import org.w3c.dom.Element
 import react.Fragment
 import react.create
 import react.dom.client.createRoot
+import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
-import react.dom.html.ReactHTML.p
 
 var container: Element? = null
 
 fun main() {
     val modes = listOf("root", "clockroot", "adminroot")
     val mode = getmode(modes)
-    when(mode) {
-        1 -> home(container!!)
-        2 -> clock(container!!)
+
+    if (mode == 0) {
+        document.body!!.appendChild(container!!)
+        createRoot(container!!).render(Fragment.create {
+            div() {
+                className = ClassName("container")
+                h1 {
+                    +("Home Mode")
+                }
+            }
+        })
+    }
+    else if (mode == 1) {
+        document.body!!.appendChild(container!!)
+        createRoot(container!!).render(Fragment.create {
+            div() {
+                className = ClassName("container")
+                h1 {
+                    +("Login")
+                }
+                ReactHTML.p {
+                    +("Please enter your employee ID.")
+                }
+            }
+        })
     }
 }
 
@@ -26,32 +48,13 @@ fun getmode(modes: List<String>): Int {
         container = document.getElementById(modes[cnt])
         cnt++
     }
-    return cnt
+    return cnt - 1
 }
 
-fun home(container: Element) {
-    document.body!!.appendChild(container)
-    createRoot(container).render(Fragment.create {
-        div() {
-            className = ClassName("container")
-            h1 {
-                +("Home Mode")
-            }
-        }
-    })
+fun home() {
+
 }
 
-fun clock(container: Element) {
-    document.body!!.appendChild(container)
-    createRoot(container).render(Fragment.create {
-        div() {
-            className = ClassName("container")
-            h1 {
-                +("Login")
-            }
-            p {
-                +("Please enter your employee ID.")
-            }
-        }
-    })
+fun clock() {
+
 }
