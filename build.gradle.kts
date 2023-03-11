@@ -63,6 +63,7 @@ kotlin {
                 implementation("ch.qos.logback:logback-classic:$logbackVersion")
                 implementation("org.litote.kmongo:kmongo-coroutine-serialization:$kmongoVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+                implementation("org.litote.kmongo:kmongo-coroutine:4.8.0")
             }
         }
         val jvmTest by getting

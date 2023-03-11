@@ -14,6 +14,9 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.html.*
+import org.litote.kmongo.coroutine.CoroutineFindPublisher
+import org.litote.kmongo.coroutine.coroutine
+import org.litote.kmongo.reactivestreams.KMongo
 
 fun HTML.index() {
     head {
@@ -30,14 +33,19 @@ fun HTML.index() {
     }
 }
 
+val client = KMongo.createClient().coroutine
+val database = client.getDatabase("cloudclock")
+val employees = database.getCollection<Employee>("employee")
+val events = database.getCollection<TimeEvent>("events")
 
 // TODO: Remove hardcoded values, replace with MongoDB/MySQL instance.
-val employees = mutableListOf(Employee("Matthew Ganotisi", 1),
-    Employee("Joaquin Pacia", 2))
-val events = mutableListOf<TimeEvent>()
+//val employees = mutableListOf(Employee("Matthew Ganotisi", 1),
+//    Employee("Joaquin Pacia", 2))
+//val events = mutableListOf<TimeEvent>()
 
 fun main() {
-    embeddedServer(Netty, port = 8080, host = "127.0.0.1", module = Application::myApplicationModule).start(wait = true)
+    val port = System.getenv("PORT")?.toInt() ?: 8080
+    embeddedServer(Netty, port, host = "127.0.0.1", module = Application::myApplicationModule).start(wait = true)
 }
 
 fun Application.myApplicationModule() {
@@ -55,12 +63,13 @@ fun Application.myApplicationModule() {
                 call.respond(employees)
             }
             post {
-                employees += call.receive<Employee>()
+                val emp = call.receive<Employee>()
+                employees.insertOne(emp)
                 call.respond(HttpStatusCode.OK)
             }
             delete("/{id}") {
                 val id = call.parameters["id"]?.toLong() ?: error("No employee exists with that ID")
-                employees.removeIf { it.id == id }
+                employees.findOneAndDelete("{ employee_id: ${id} }")
                 call.respond(HttpStatusCode.OK)
             }
         }
@@ -69,7 +78,8 @@ fun Application.myApplicationModule() {
                 call.respond(events)
             }
             post {
-                events += call.receive<TimeEvent>()
+                val event = call.receive<TimeEvent>()
+                events.insertOne(event)
                 call.respond(HttpStatusCode.OK)
             }
         }
