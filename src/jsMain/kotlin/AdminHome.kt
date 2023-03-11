@@ -1,3 +1,4 @@
+
 import csstype.ClassName
 import kotlinx.coroutines.launch
 import react.FC
@@ -6,9 +7,9 @@ import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.table
 import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
-import react.dom.html.ReactHTML.tr
 import react.dom.html.ReactHTML.th
 import react.dom.html.ReactHTML.thead
+import react.dom.html.ReactHTML.tr
 import react.useState
 
 val logTable = FC<Props>{ props ->
@@ -19,7 +20,7 @@ val logTable = FC<Props>{ props ->
         events = getEvents()
     }
     div {
-        className = ClassName("Container")
+        className = ClassName("container")
         table {
             thead {
                 tr {
