@@ -1,5 +1,11 @@
-
+package pages.admin
+import ENTER
+import EXIT
+import Employee
+import TimeEvent
 import csstype.ClassName
+import getEmployees
+import getEvents
 import kotlinx.coroutines.launch
 import react.FC
 import react.Props
@@ -11,6 +17,7 @@ import react.dom.html.ReactHTML.th
 import react.dom.html.ReactHTML.thead
 import react.dom.html.ReactHTML.tr
 import react.useState
+import scope
 
 val logTable = FC<Props>{ props ->
     var employees by useState(emptyList<Employee>())

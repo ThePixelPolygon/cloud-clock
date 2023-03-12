@@ -63,20 +63,22 @@ kotlin {
                 implementation("ch.qos.logback:logback-classic:$logbackVersion")
                 implementation("org.litote.kmongo:kmongo-coroutine-serialization:$kmongoVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
-                implementation("org.litote.kmongo:kmongo-coroutine:4.8.0")
             }
         }
         val jvmTest by getting
         val jsMain by getting {
             dependencies {
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-web:1.0.0-pre.510-compat")
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-react:18.2.0-pre.346")
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom:18.2.0-pre.346")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-react-router:6.7.0-pre.481-compat")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-react-router-dom:6.7.0-pre.481-compat")
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-emotion:11.9.3-pre.346")
                 implementation("io.ktor:ktor-client-js:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation(project.dependencies.enforcedPlatform("org.jetbrains.kotlin-wrappers:kotlin-wrappers-bom:$kotlinWrappersVersion"))
-                implementation("org.jetbrains.kotlin-wrappers:kotlin-react")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-react:1.0.0-pre.510")
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom")
             }
         }

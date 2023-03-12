@@ -1,12 +1,17 @@
-
+package pages.clock
+import ENTER
+import EXIT
+import Employee
+import TimeEvent
 import csstype.ClassName
+import getEmployees
+import getEvents
 import kotlinx.browser.document
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDateTime
 import org.w3c.dom.HTMLFormElement
 import org.w3c.dom.HTMLInputElement
+import postEvent
 import react.FC
 import react.Props
 import react.dom.events.ChangeEventHandler
@@ -16,9 +21,8 @@ import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.form
 import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.label
-import react.useEffectOnce
 import react.useState
-
+import scope
 
 
 val ClockPage = FC<Props> { props ->

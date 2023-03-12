@@ -13,29 +13,13 @@ import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import kotlinx.html.*
-import org.litote.kmongo.coroutine.CoroutineFindPublisher
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
-
-fun HTML.index() {
-    head {
-        title("Hello from Ktor!")
-    }
-    body {
-        div {
-            +"Hello from Ktor"
-        }
-        div {
-            id = "root"
-        }
-        script(src = "/static/cloud-clock.js") {}
-    }
-}
 
 val client = KMongo.createClient().coroutine
 val database = client.getDatabase("cloudclock")
 val employees = database.getCollection<Employee>("employee")
+
 val events = database.getCollection<TimeEvent>("events")
 
 // TODO: Remove hardcoded values, replace with MongoDB/MySQL instance.
@@ -58,6 +42,7 @@ fun Application.myApplicationModule() {
         allowMethod(HttpMethod.Delete)
     }
     routing {
+
         route(Employee.path) {
             get {
                 call.respond(employees)
@@ -87,15 +72,15 @@ fun Application.myApplicationModule() {
             call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
                 ContentType.Text.Html)
         }
-        get("/admin") {
-            call.respondText(this::class.java.classLoader.getResource("console.html")!!.readText(),
-                ContentType.Text.Html)
-        }
         get("/clock") {
-            call.respondText(this::class.java.classLoader.getResource("clock.html")!!.readText(),
+            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
                 ContentType.Text.Html)
         }
-        static("") {
+        get("/admin") {
+            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+                ContentType.Text.Html)
+        }
+        static("/") {
             resources("")
         }
         static("/static") {
