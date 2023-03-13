@@ -37,17 +37,16 @@ val ClockPage = FC<Props> { props ->
         it.preventDefault()
         var message = document.getElementById("message")!!
         message.innerHTML = ""
-        val employeeId: Long? = idText?.toLong()
 
-        if (employeeId is Long) {
+        if (idText is String) {
 
             var success: Boolean = false
             scope.launch {
-                success = LogEvent(employeeId, employees, events)
+                success = LogEvent(idText, employees, events)
                 if (success) {
                     var name = ""
                     for (employee: Employee in employees) {
-                        if (employee.id == employeeId) {
+                        if (employee.user_id == idText) {
                             name = employee.name
                         }
                     }
@@ -96,10 +95,10 @@ val ClockPage = FC<Props> { props ->
         className = ClassName("container")
     }
 }
-suspend fun LogEvent(id: Long, employees: List<Employee>, events: List<TimeEvent>): Boolean {
+suspend fun LogEvent(id: String, employees: List<Employee>, events: List<TimeEvent>): Boolean {
     var found: Boolean = false
     for (employee: Employee in employees) {
-        if (employee.id == id) {
+        if (employee.user_id == id) {
             found = true
             break
         }
@@ -110,7 +109,7 @@ suspend fun LogEvent(id: Long, employees: List<Employee>, events: List<TimeEvent
     var eventType = ENTER
 
     for (lastEvent: TimeEvent in events.reversed()) {
-        val lastId = lastEvent.id
+        val lastId = lastEvent.evt_id
         if (id == lastId) {
             if (lastEvent.eventType == ENTER) {
                 eventType = EXIT

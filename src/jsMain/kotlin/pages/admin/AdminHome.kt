@@ -49,10 +49,10 @@ val logTable = FC<Props>{ props ->
                 for (event: TimeEvent in events) {
                     tr {
                         td {
-                            +(event.id.toString())
+                            +(event.evt_id.toString())
                         }
                         td {
-                            +(getName(employees, event.id))
+                            +(getName(employees, event.evt_id))
                         }
                         td {
                             +(when(event.eventType) {
@@ -73,9 +73,9 @@ val logTable = FC<Props>{ props ->
     }
 }
 
-fun getName(employees: List<Employee>, id: Long): String {
+fun getName(employees: List<Employee>, id: String): String {
     for (employee: Employee in employees) {
-        if (employee.id == id) {
+        if (employee.user_id == id) {
             return employee.name
         }
     }

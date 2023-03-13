@@ -2,6 +2,7 @@ package me.matt.application
 
 import Employee
 import TimeEvent
+import com.mongodb.ConnectionString
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -16,7 +17,12 @@ import io.ktor.server.routing.*
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
 
-val client = KMongo.createClient().coroutine
+val connectionString: ConnectionString? = System.getenv("MONGODB_URI")?.let {
+    ConnectionString("$it?retryWrites=false")
+}
+
+val client = if (connectionString != null) KMongo.createClient(connectionString).coroutine
+    else KMongo.createClient().coroutine
 val database = client.getDatabase("cloudclock")
 val employees = database.getCollection<Employee>("employee")
 
@@ -45,7 +51,7 @@ fun Application.myApplicationModule() {
 
         route(Employee.path) {
             get {
-                call.respond(employees)
+                call.respond(employees.find().toList())
             }
             post {
                 val emp = call.receive<Employee>()
@@ -53,14 +59,14 @@ fun Application.myApplicationModule() {
                 call.respond(HttpStatusCode.OK)
             }
             delete("/{id}") {
-                val id = call.parameters["id"]?.toLong() ?: error("No employee exists with that ID")
-                employees.findOneAndDelete("{ employee_id: ${id} }")
+                val id = call.parameters["id"]
+                employees.findOneAndDelete("{ user_id: $id }")
                 call.respond(HttpStatusCode.OK)
             }
         }
         route(TimeEvent.path) {
             get {
-                call.respond(events)
+                call.respond(events.find().limit(10).toList())
             }
             post {
                 val event = call.receive<TimeEvent>()
