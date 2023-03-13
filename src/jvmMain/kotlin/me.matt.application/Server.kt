@@ -28,14 +28,9 @@ val employees = database.getCollection<Employee>("employee")
 
 val events = database.getCollection<TimeEvent>("events")
 
-// TODO: Remove hardcoded values, replace with MongoDB/MySQL instance.
-//val employees = mutableListOf(Employee("Matthew Ganotisi", 1),
-//    Employee("Joaquin Pacia", 2))
-//val events = mutableListOf<TimeEvent>()
-
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8080
-    embeddedServer(Netty, port, host = "127.0.0.1", module = Application::myApplicationModule).start(wait = true)
+    embeddedServer(Netty, port, module = Application::myApplicationModule).start(wait = true)
 }
 
 fun Application.myApplicationModule() {
