@@ -1,0 +1,116 @@
+{
+  "version": "9",
+  "items": {
+    "af74c2b8266078e5980fa1b0a2dd5f19": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\kotlinx-serialization-json-js\\1.3.3\\53b2cde945192fe492f512ab7829585791f05b\\kotlinx-serialization-json-jsir-1.3.3.klib"
+    },
+    "db0531404860243a6b593b40bc631091": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\kotlinx-serialization-core-js\\1.3.3\\e9d8021dbf71cdbd6797c347739835d0f7b5102d\\kotlinx-serialization-core-jsir-1.3.3.klib"
+    },
+    "3820b665aa959d051951e0d695374c0e": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-stdlib-js\\1.8.10\\7f93c25deb9f979fa60c91720d1b0b6bfcb678e3\\kotlin-stdlib-js-1.8.10.jar",
+      "target": "kotlin\\1.8.10"
+    },
+    "f759a84445cc1297e3b0e2d63d08b9ad": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-stdlib-common\\1.8.10\\a61b182458550492c12aee66157d7b524a63a5ec\\kotlin-stdlib-common-1.8.10.jar"
+    },
+    "9c20dc26d9523e4a841a721ba68bbc06": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-client-core-js\\2.0.3\\142bcbec97a68451d9805bb123941bfdbf33a029\\ktor-client-core-jsir-2.0.3.klib",
+      "target": "ktor-ktor-client-core-js-ir\\2.0.3"
+    },
+    "82b49812b31b62d405a5c0ac6ef38c79": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-events-js\\2.0.3\\2f9af8f24f9c34d41adc8a291223b1c781d999b1\\ktor-events-jsir-2.0.3.klib"
+    },
+    "a7f57a03c102b805074ed307f1190a38": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-http-js\\2.0.3\\ce9c3b3c10394d61df071427310308daa4ead564\\ktor-http-jsir-2.0.3.klib"
+    },
+    "eb44045e03c37700753114ca4c000e7b": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-utils-js\\2.0.3\\6949247bac4083112ebf8be6a5736015ecf11fc5\\ktor-utils-jsir-2.0.3.klib"
+    },
+    "3548c8854d5fc9502f09f56ddba35705": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-io-js\\2.0.3\\b3cf38d1365ec48903e351d9bcc463eab15eed05\\ktor-io-jsir-2.0.3.klib"
+    },
+    "87b37b026e9680692b36e7c4c08334c2": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\kotlinx-coroutines-core-js\\1.6.4\\791d62c16e6fad7cc9b1e6fafe88a3d454744d99\\kotlinx-coroutines-core-jsir-1.6.4.klib"
+    },
+    "489089308e6bacd4b18fc93c501bb01c": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\atomicfu-js\\0.17.3\\5fd992f78532945e29a1c54279eafffe2a0c95fe\\atomicfu-jsir-0.17.3.klib"
+    },
+    "68b4fc3260b20bef86b65f0a39fae75a": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\atomicfu\\1.6.21\\f486917a9c89e5c7d5d08009d58ad810a57a7011\\atomicfu-1.6.21.jar"
+    },
+    "4b3b46c3b5e4f295fef8ca87c149b58f": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-websocket-serialization-js\\2.0.3\\bf67716cd238069e794b62b51d70d43837b2cef\\ktor-websocket-serialization-jsir-2.0.3.klib"
+    },
+    "84f705e6f94d90756e95725e3cc09af1": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-serialization-js\\2.0.3\\9511ff4b7792f9fc77bed4d48aa3b79da43c7008\\ktor-serialization-jsir-2.0.3.klib"
+    },
+    "6dee9233c18eeb6df7c51a710513ffac": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-websockets-js\\2.0.3\\a0937bda97ea4564264d38b4296e7560efc3b28e\\ktor-websockets-jsir-2.0.3.klib"
+    },
+    "c757ea0193ef52274111b7dfcef33aa3": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\kotlinx-datetime-js\\0.4.0\\254f7fbd94ca83b23368b6abdd89d9ad72e0a832\\kotlinx-datetime-jsir-0.4.0.klib",
+      "target": "Kotlin-DateTime-library-kotlinx-datetime-js-ir\\0.4.0"
+    },
+    "a0208a4906b32d4405c344213af9cfa6": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-web-js\\1.0.0-pre.510-compat\\20f736e3320431ea494b317428598080ad484ba2\\kotlin-web-js-1.0.0-pre.510-compat.klib"
+    },
+    "d31a0c186bef5b40961ef09a5ad8eca7": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-js\\1.0.0-pre.354\\13eef5056a6fa945860a937393577cd5b40a68b7\\kotlin-js-1.0.0-pre.354.klib"
+    },
+    "78e928baa9a491ab6420ad97c7fd2dbc": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-react-router\\6.7.0-pre.481-compat\\76fd57b3f1703d4eb6bbc789909a2522509281c0\\kotlin-react-router-6.7.0-pre.481-compat.klib",
+      "target": "kotlin-wrappers-kotlin-react-router-js-ir\\6.7.0-pre.481-compat"
+    },
+    "eaf1552606f1a511d0199fa454d54a24": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-remix-run-router\\1.3.0-pre.481-compat\\d6677e687402c735ce6a6e092cf5ec07c8890690\\kotlin-remix-run-router-1.3.0-pre.481-compat.klib",
+      "target": "kotlin-wrappers-kotlin-remix-run-router-js-ir\\1.3.0-pre.481-compat"
+    },
+    "6cc717d579c75759b7b37019a2dba91c": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-browser\\0.0.1-pre.354\\149172d8bd4765695076642dbb253a594fad3b15\\kotlin-browser-0.0.1-pre.354.klib"
+    },
+    "46994b34ae1691e8dc4794f8eccf49d5": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-history\\5.3.0-pre.354\\48eafc94f09a6e33d0d9e5de3dc7d5caf7ac1b46\\kotlin-history-5.3.0-pre.354.klib",
+      "target": "kotlin-wrappers-kotlin-history-js-ir\\5.3.0-pre.354"
+    },
+    "84cf683152bf331d7b85de565058e116": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-client-js-js\\2.0.3\\8720e4b8fde3f632846593617aa810a419782016\\ktor-client-js-jsir-2.0.3.klib"
+    },
+    "6a9a36064a58d781a83f861b7669e162": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-client-content-negotiation-js\\2.0.3\\2a94fd1e697e0b94be9570686e408905cfdd0a5b\\ktor-client-content-negotiation-jsir-2.0.3.klib"
+    },
+    "bde2d5fe4690f116f4fb45fa50712e6a": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-serialization-kotlinx-json-js\\2.0.3\\2c195df0f5bc641a32656b00f690531948125343\\ktor-serialization-kotlinx-json-jsir-2.0.3.klib"
+    },
+    "9e18c6cc6669874a1c6cb124fef861a7": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\io.ktor\\ktor-serialization-kotlinx-js\\2.0.3\\7984224f171750a6b13f28e324373329b73af74\\ktor-serialization-kotlinx-jsir-2.0.3.klib"
+    },
+    "1ac085e2f277a9a2ed0382b398248c53": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-test-js-runner\\1.8.0\\b4f77e5ecd9c56fc312d90cb0ab919ee452dfb4\\kotlin-test-js-runner-1.8.0.jar",
+      "target": "kotlin-test-js-runner\\1.8.0"
+    },
+    "f9b0018b4466d87c5580a9adc3f4433d": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-emotion\\11.9.3-pre.354\\c4d23486bd5650bc8643ee7cc5ac68ce16ef358c\\kotlin-emotion-11.9.3-pre.354.klib",
+      "target": "kotlin-wrappers-kotlin-emotion-js-ir\\11.9.3-pre.354"
+    },
+    "61d85ca3ca498380a38f9e50bb14fcc5": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-react-core\\18.2.0-pre.354\\52d403c81ef290d66beac526358ea53df4a0f36f\\kotlin-react-core-18.2.0-pre.354.klib",
+      "target": "kotlin-wrappers-kotlin-react-core-js-ir\\18.2.0-pre.354"
+    },
+    "124eeb3642318695917f58bea1b36027": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-csstype\\3.1.0-pre.354\\4be2329e97aaba5ac5a198fdde6b9b678845c635\\kotlin-csstype-3.1.0-pre.354.klib",
+      "target": "kotlin-wrappers-kotlin-csstype-js-ir\\3.1.0-pre.354"
+    },
+    "225681e8cdca9e79f8f6523ff070a319": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-react\\18.2.0-pre.354\\3495f9684688935d7fc43e289b4e66b2fed9b66a\\kotlin-react-18.2.0-pre.354.klib"
+    },
+    "9e1a4742ecf0d7f798b48fd50edc78e1": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-react-dom\\18.2.0-pre.354\\2fe456cd06755910291b385d62d7882d52a6747c\\kotlin-react-dom-18.2.0-pre.354.klib",
+      "target": "kotlin-wrappers-kotlin-react-dom-js-ir\\18.2.0-pre.354"
+    },
+    "1ea83698a1e6c16d01b5efc1dcd85266": {
+      "src": "C:\\Users\\Matt\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin-wrappers\\kotlin-react-router-dom\\6.3.0-pre.354\\2982302dbd10f11de2fc3e8f58a8aa2ad90d74a3\\kotlin-react-router-dom-6.3.0-pre.354.klib",
+      "target": "kotlin-wrappers-kotlin-react-router-dom-js-ir\\6.3.0-pre.354"
+    }
+  }
+}
