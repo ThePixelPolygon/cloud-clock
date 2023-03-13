@@ -1,0 +1,9 @@
+name: Site Compilation
+
+run-name: Deploying the site
+on: [push]
+jobs:
+  Compile-Site:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./gradlew installDist
