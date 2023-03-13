@@ -6,4 +6,4 @@ jobs:
   Compile-Site:
     runs-on: ubuntu-latest
     steps:
-      - run: ./gradlew installDist
+      - run: gradlew installDist
