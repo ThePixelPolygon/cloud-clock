@@ -1,5 +1,11 @@
-
+package pages.admin
+import ENTER
+import EXIT
+import Employee
+import TimeEvent
 import csstype.ClassName
+import getEmployees
+import getEvents
 import kotlinx.coroutines.launch
 import react.FC
 import react.Props
@@ -11,6 +17,7 @@ import react.dom.html.ReactHTML.th
 import react.dom.html.ReactHTML.thead
 import react.dom.html.ReactHTML.tr
 import react.useState
+import scope
 
 val logTable = FC<Props>{ props ->
     var employees by useState(emptyList<Employee>())
@@ -42,10 +49,10 @@ val logTable = FC<Props>{ props ->
                 for (event: TimeEvent in events) {
                     tr {
                         td {
-                            +(event.id.toString())
+                            +(event.evt_id.toString())
                         }
                         td {
-                            +(getName(employees, event.id))
+                            +(getName(employees, event.evt_id))
                         }
                         td {
                             +(when(event.eventType) {
@@ -66,9 +73,9 @@ val logTable = FC<Props>{ props ->
     }
 }
 
-fun getName(employees: List<Employee>, id: Long): String {
+fun getName(employees: List<Employee>, id: String): String {
     for (employee: Employee in employees) {
-        if (employee.id == id) {
+        if (employee.user_id == id) {
             return employee.name
         }
     }
