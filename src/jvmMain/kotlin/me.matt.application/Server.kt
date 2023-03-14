@@ -93,6 +93,9 @@ fun Application.myApplicationModule() {
                 employees.findOneAndDelete("{ user_id: $id }")
                 call.respond(HttpStatusCode.OK)
             }
+            get("/{id}") {
+                call.respond(employees.find("{ user_id: ${call.parameters["id"]}}").toList()[0])
+            }
         }
         route(TimeEvent.path) {
             get {

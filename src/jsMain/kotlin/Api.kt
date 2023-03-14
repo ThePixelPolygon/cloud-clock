@@ -21,6 +21,11 @@ suspend fun getEmployees(): List<Employee> {
     return jsonClient.get(Employee.path).body()
 }
 
+suspend fun getEmployee(id: String): Employee {
+    return jsonClient.get(Employee.path + "/$id").body()
+}
+
+
 suspend fun postEvent(timeEvent: TimeEvent) {
     jsonClient.post(TimeEvent.path) {
         contentType(ContentType.Application.Json)
