@@ -20,7 +20,7 @@ import org.litote.kmongo.reactivestreams.KMongo
 
 fun HTML.index() {
     head {
-        title("Hello from Ktor!")
+        title("Cloud Clock")
         link(rel = "stylesheet", href = "/static/css/bootstrap.css")
 
     }
