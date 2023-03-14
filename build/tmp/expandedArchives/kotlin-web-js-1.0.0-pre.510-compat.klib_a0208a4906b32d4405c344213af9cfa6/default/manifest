@@ -1,8 +1,0 @@
-builtins_platform=JS
-unique_name=org.jetbrains.kotlin-wrappers\:kotlin-web
-compiler_version=1.8.10
-depends=org.jetbrains.kotlin-wrappers\:kotlin-js org.jetbrains.kotlinx\:kotlinx-coroutines-core org.jetbrains.kotlinx\:atomicfu kotlin org.jetbrains.kotlin\:kotlinx-atomicfu-runtime
-jsOutputName=kotlin-web
-abi_version=1.7.0
-metadata_version=1.4.1
-ir_version=1.0.0
