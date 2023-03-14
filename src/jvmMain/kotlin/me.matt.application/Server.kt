@@ -7,6 +7,7 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
+import io.ktor.server.html.*
 import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
@@ -14,8 +15,28 @@ import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.html.*
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
+
+fun HTML.index() {
+    head {
+        title("Hello from Ktor!")
+        link(rel = "stylesheet", href = "/static/css/bootstrap.css")
+
+    }
+    body {
+        div {
+
+        }
+        div {
+            id = "root"
+        }
+        script(src = "/static/js/cloud-clock.js") {}
+        script(src = "/static/cloud-clock.js") {}
+    }
+}
+
 
 val connectionString: ConnectionString? = System.getenv("MONGODB_URI")?.let {
     ConnectionString("$it?retryWrites=false")
@@ -30,7 +51,8 @@ val events = database.getCollection<TimeEvent>("events")
 
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8080
-    embeddedServer(Netty, port, module = Application::myApplicationModule).start(wait = true)
+    val host = System.getenv("HOST")?.toString() ?: "127.0.0.1"
+    embeddedServer(Netty, port, host = host, module = Application::myApplicationModule).start(wait = true)
 }
 
 fun Application.myApplicationModule() {
@@ -44,6 +66,20 @@ fun Application.myApplicationModule() {
     }
     routing {
 
+        route("/") {
+            get("{...}") {
+                call.respondHtml(HttpStatusCode.OK, HTML::index)
+            }
+            get() {
+                call.respondHtml(HttpStatusCode.OK, HTML::index)
+            }
+        }
+        static("/static") {
+            resources(".")
+        }
+        static("{...}") {
+            resources(".")
+        }
         route(Employee.path) {
             get {
                 call.respond(employees.find().toList())
@@ -69,23 +105,19 @@ fun Application.myApplicationModule() {
                 call.respond(HttpStatusCode.OK)
             }
         }
-        get("/") {
-            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
-                ContentType.Text.Html)
-        }
-        get("/clock") {
-            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
-                ContentType.Text.Html)
-        }
-        get("/admin") {
-            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
-                ContentType.Text.Html)
-        }
-        static("/") {
-            resources("")
-        }
-        static("/static") {
-            resources()
-        }
+//        get("/") {
+//            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+//                ContentType.Text.Html)
+//        }
+////        get("/admin") {
+////            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+////                ContentType.Text.Html)
+////        }
+////        get("/admin/employees") {
+////            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+////                ContentType.Text.Html)
+////        }
+
     }
 }
+

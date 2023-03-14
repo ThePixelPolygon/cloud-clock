@@ -60,6 +60,7 @@
   var Routes = $module$react_router_h6p15h.Routes;
   var Route = $module$react_router_h6p15h.Route;
   var useState = $module$react.useState;
+  var Outlet = $module$react_router_h6p15h.Outlet;
   var objectMeta = kotlin_kotlin.$_$.c9;
   var setMetadataFor = kotlin_kotlin.$_$.d9;
   var PluginGeneratedSerialDescriptor = kotlin_org_jetbrains_kotlinx_kotlinx_serialization_core.$_$.u1;
@@ -97,9 +98,9 @@
   var FC = kotlin_org_jetbrains_kotlin_wrappers_kotlin_react.$_$.a;
   var create = kotlin_org_jetbrains_kotlin_wrappers_kotlin_react.$_$.b;
   var MainScope = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.d1;
+  var ReactHTML_getInstance = kotlin_org_jetbrains_kotlin_wrappers_kotlin_react_dom.$_$.a;
   var emptyList = kotlin_kotlin.$_$.h5;
   var launch$default = kotlin_org_jetbrains_kotlinx_kotlinx_coroutines_core.$_$.j;
-  var ReactHTML_getInstance = kotlin_org_jetbrains_kotlin_wrappers_kotlin_react_dom.$_$.a;
   var KMutableProperty0 = kotlin_kotlin.$_$.s9;
   var THROW_ISE = kotlin_kotlin.$_$.lb;
   var getLocalDelegateReference = kotlin_kotlin.$_$.f8;
@@ -127,7 +128,7 @@
   //endregion
   function Companion() {
     Companion_instance = this;
-    this.l3l_1 = '/employees';
+    this.m3l_1 = '/employees';
   }
   var Companion_instance;
   function Companion_getInstance_0() {
@@ -140,10 +141,10 @@
     var tmp0_serialDesc = new PluginGeneratedSerialDescriptor('Employee', this, 2);
     tmp0_serialDesc.w22('name', false);
     tmp0_serialDesc.w22('user_id', false);
-    this.m3l_1 = tmp0_serialDesc;
+    this.n3l_1 = tmp0_serialDesc;
   }
   $serializer.prototype.o1t = function () {
-    return this.m3l_1;
+    return this.n3l_1;
   };
   $serializer.prototype.y22 = function () {
     var tmp$ret$2;
@@ -159,7 +160,7 @@
     return tmp$ret$2;
   };
   $serializer.prototype.q1t = function (decoder) {
-    var tmp0_desc = this.m3l_1;
+    var tmp0_desc = this.n3l_1;
     var tmp1_flag = true;
     var tmp2_index = 0;
     var tmp3_bitMask0 = 0;
@@ -193,15 +194,15 @@
     tmp6_input.k1w(tmp0_desc);
     return Employee_init_$Create$(tmp3_bitMask0, tmp4_local0, tmp5_local1, null);
   };
-  $serializer.prototype.n3l = function (encoder, value) {
-    var tmp0_desc = this.m3l_1;
+  $serializer.prototype.o3l = function (encoder, value) {
+    var tmp0_desc = this.n3l_1;
     var tmp1_output = encoder.j1w(tmp0_desc);
-    tmp1_output.v1x(tmp0_desc, 0, value.o3l_1);
-    tmp1_output.v1x(tmp0_desc, 1, value.p3l_1);
+    tmp1_output.v1x(tmp0_desc, 0, value.p3l_1);
+    tmp1_output.v1x(tmp0_desc, 1, value.q3l_1);
     tmp1_output.k1w(tmp0_desc);
   };
   $serializer.prototype.p1t = function (encoder, value) {
-    return this.n3l(encoder, value instanceof Employee ? value : THROW_CCE());
+    return this.o3l(encoder, value instanceof Employee ? value : THROW_CCE());
   };
   var $serializer_instance;
   function $serializer_getInstance() {
@@ -211,10 +212,10 @@
   }
   function Employee_init_$Init$(seen1, name, user_id, serializationConstructorMarker, $this) {
     if (!(3 === (3 & seen1))) {
-      throwMissingFieldException(seen1, 3, $serializer_getInstance().m3l_1);
+      throwMissingFieldException(seen1, 3, $serializer_getInstance().n3l_1);
     }
-    $this.o3l_1 = name;
-    $this.p3l_1 = user_id;
+    $this.p3l_1 = name;
+    $this.q3l_1 = user_id;
     return $this;
   }
   function Employee_init_$Create$(seen1, name, user_id, serializationConstructorMarker) {
@@ -222,15 +223,15 @@
   }
   function Employee(name, user_id) {
     Companion_getInstance_0();
-    this.o3l_1 = name;
-    this.p3l_1 = user_id;
+    this.p3l_1 = name;
+    this.q3l_1 = user_id;
   }
   Employee.prototype.toString = function () {
-    return 'Employee(name=' + this.o3l_1 + ', user_id=' + this.p3l_1 + ')';
+    return 'Employee(name=' + this.p3l_1 + ', user_id=' + this.q3l_1 + ')';
   };
   Employee.prototype.hashCode = function () {
-    var result = getStringHashCode(this.o3l_1);
-    result = imul(result, 31) + getStringHashCode(this.p3l_1) | 0;
+    var result = getStringHashCode(this.p3l_1);
+    result = imul(result, 31) + getStringHashCode(this.q3l_1) | 0;
     return result;
   };
   Employee.prototype.equals = function (other) {
@@ -239,15 +240,15 @@
     if (!(other instanceof Employee))
       return false;
     var tmp0_other_with_cast = other instanceof Employee ? other : THROW_CCE();
-    if (!(this.o3l_1 === tmp0_other_with_cast.o3l_1))
-      return false;
     if (!(this.p3l_1 === tmp0_other_with_cast.p3l_1))
+      return false;
+    if (!(this.q3l_1 === tmp0_other_with_cast.q3l_1))
       return false;
     return true;
   };
   function Companion_0() {
     Companion_instance_0 = this;
-    this.q3l_1 = '/eventlog';
+    this.r3l_1 = '/eventlog';
   }
   var Companion_instance_0;
   function Companion_getInstance_1() {
@@ -261,10 +262,10 @@
     tmp0_serialDesc.w22('evt_id', false);
     tmp0_serialDesc.w22('eventType', false);
     tmp0_serialDesc.w22('dateTime', false);
-    this.r3l_1 = tmp0_serialDesc;
+    this.s3l_1 = tmp0_serialDesc;
   }
   $serializer_0.prototype.o1t = function () {
-    return this.r3l_1;
+    return this.s3l_1;
   };
   $serializer_0.prototype.y22 = function () {
     var tmp$ret$2;
@@ -280,7 +281,7 @@
     return tmp$ret$2;
   };
   $serializer_0.prototype.q1t = function (decoder) {
-    var tmp0_desc = this.r3l_1;
+    var tmp0_desc = this.s3l_1;
     var tmp1_flag = true;
     var tmp2_index = 0;
     var tmp3_bitMask0 = 0;
@@ -321,16 +322,16 @@
     tmp7_input.k1w(tmp0_desc);
     return TimeEvent_init_$Create$(tmp3_bitMask0, tmp4_local0, tmp5_local1, tmp6_local2, null);
   };
-  $serializer_0.prototype.s3l = function (encoder, value) {
-    var tmp0_desc = this.r3l_1;
+  $serializer_0.prototype.t3l = function (encoder, value) {
+    var tmp0_desc = this.s3l_1;
     var tmp1_output = encoder.j1w(tmp0_desc);
-    tmp1_output.v1x(tmp0_desc, 0, value.t3l_1);
-    tmp1_output.q1x(tmp0_desc, 1, value.u3l_1);
-    tmp1_output.v1x(tmp0_desc, 2, value.v3l_1);
+    tmp1_output.v1x(tmp0_desc, 0, value.u3l_1);
+    tmp1_output.q1x(tmp0_desc, 1, value.v3l_1);
+    tmp1_output.v1x(tmp0_desc, 2, value.w3l_1);
     tmp1_output.k1w(tmp0_desc);
   };
   $serializer_0.prototype.p1t = function (encoder, value) {
-    return this.s3l(encoder, value instanceof TimeEvent ? value : THROW_CCE());
+    return this.t3l(encoder, value instanceof TimeEvent ? value : THROW_CCE());
   };
   var $serializer_instance_0;
   function $serializer_getInstance_0() {
@@ -340,11 +341,11 @@
   }
   function TimeEvent_init_$Init$(seen1, evt_id, eventType, dateTime, serializationConstructorMarker, $this) {
     if (!(7 === (7 & seen1))) {
-      throwMissingFieldException(seen1, 7, $serializer_getInstance_0().r3l_1);
+      throwMissingFieldException(seen1, 7, $serializer_getInstance_0().s3l_1);
     }
-    $this.t3l_1 = evt_id;
-    $this.u3l_1 = eventType;
-    $this.v3l_1 = dateTime;
+    $this.u3l_1 = evt_id;
+    $this.v3l_1 = eventType;
+    $this.w3l_1 = dateTime;
     return $this;
   }
   function TimeEvent_init_$Create$(seen1, evt_id, eventType, dateTime, serializationConstructorMarker) {
@@ -352,17 +353,17 @@
   }
   function TimeEvent(evt_id, eventType, dateTime) {
     Companion_getInstance_1();
-    this.t3l_1 = evt_id;
-    this.u3l_1 = eventType;
-    this.v3l_1 = dateTime;
+    this.u3l_1 = evt_id;
+    this.v3l_1 = eventType;
+    this.w3l_1 = dateTime;
   }
   TimeEvent.prototype.toString = function () {
-    return 'TimeEvent(evt_id=' + this.t3l_1 + ', eventType=' + this.u3l_1 + ', dateTime=' + this.v3l_1 + ')';
+    return 'TimeEvent(evt_id=' + this.u3l_1 + ', eventType=' + this.v3l_1 + ', dateTime=' + this.w3l_1 + ')';
   };
   TimeEvent.prototype.hashCode = function () {
-    var result = getStringHashCode(this.t3l_1);
-    result = imul(result, 31) + this.u3l_1 | 0;
-    result = imul(result, 31) + getStringHashCode(this.v3l_1) | 0;
+    var result = getStringHashCode(this.u3l_1);
+    result = imul(result, 31) + this.v3l_1 | 0;
+    result = imul(result, 31) + getStringHashCode(this.w3l_1) | 0;
     return result;
   };
   TimeEvent.prototype.equals = function (other) {
@@ -371,11 +372,11 @@
     if (!(other instanceof TimeEvent))
       return false;
     var tmp0_other_with_cast = other instanceof TimeEvent ? other : THROW_CCE();
-    if (!(this.t3l_1 === tmp0_other_with_cast.t3l_1))
-      return false;
     if (!(this.u3l_1 === tmp0_other_with_cast.u3l_1))
       return false;
     if (!(this.v3l_1 === tmp0_other_with_cast.v3l_1))
+      return false;
+    if (!(this.w3l_1 === tmp0_other_with_cast.w3l_1))
       return false;
     return true;
   };
@@ -425,27 +426,27 @@
           case 0:
             this.pe_1 = 3;
             var tmp_0 = this;
-            tmp_0.e3m_1 = get_jsonClient();
+            tmp_0.f3m_1 = get_jsonClient();
             var tmp_1 = this;
             Companion_getInstance_1();
-            tmp_1.f3m_1 = '/eventlog';
+            tmp_1.g3m_1 = '/eventlog';
             var tmp_2 = this;
             var tmp0_apply = new HttpRequestBuilder();
-            url(tmp0_apply, this.f3m_1);
+            url(tmp0_apply, this.g3m_1);
             ;
-            tmp_2.g3m_1 = tmp0_apply;
-            this.g3m_1.x2n_1 = Companion_getInstance().d1n_1;
+            tmp_2.h3m_1 = tmp0_apply;
+            this.h3m_1.x2n_1 = Companion_getInstance().d1n_1;
             this.oe_1 = 1;
-            suspendResult = (new HttpStatement(this.g3m_1, this.e3m_1)).q3d(this);
+            suspendResult = (new HttpStatement(this.h3m_1, this.f3m_1)).q3d(this);
             if (suspendResult === get_COROUTINE_SUSPENDED()) {
               return suspendResult;
             }
 
             continue $sm;
           case 1:
-            this.h3m_1 = suspendResult;
+            this.i3m_1 = suspendResult;
             this.oe_1 = 2;
-            var tmp_3 = this.h3m_1.e2r();
+            var tmp_3 = this.i3m_1.e2r();
             var tmp_4 = JsType_getInstance();
             var tmp_5 = getKClass(List);
             var tmp_6;
@@ -494,27 +495,27 @@
           case 0:
             this.pe_1 = 3;
             var tmp_0 = this;
-            tmp_0.q3m_1 = get_jsonClient();
+            tmp_0.r3m_1 = get_jsonClient();
             var tmp_1 = this;
             Companion_getInstance_0();
-            tmp_1.r3m_1 = '/employees';
+            tmp_1.s3m_1 = '/employees';
             var tmp_2 = this;
             var tmp0_apply = new HttpRequestBuilder();
-            url(tmp0_apply, this.r3m_1);
+            url(tmp0_apply, this.s3m_1);
             ;
-            tmp_2.s3m_1 = tmp0_apply;
-            this.s3m_1.x2n_1 = Companion_getInstance().d1n_1;
+            tmp_2.t3m_1 = tmp0_apply;
+            this.t3m_1.x2n_1 = Companion_getInstance().d1n_1;
             this.oe_1 = 1;
-            suspendResult = (new HttpStatement(this.s3m_1, this.q3m_1)).q3d(this);
+            suspendResult = (new HttpStatement(this.t3m_1, this.r3m_1)).q3d(this);
             if (suspendResult === get_COROUTINE_SUSPENDED()) {
               return suspendResult;
             }
 
             continue $sm;
           case 1:
-            this.t3m_1 = suspendResult;
+            this.u3m_1 = suspendResult;
             this.oe_1 = 2;
-            var tmp_3 = this.t3m_1.e2r();
+            var tmp_3 = this.u3m_1.e2r();
             var tmp_4 = JsType_getInstance();
             var tmp_5 = getKClass(List);
             var tmp_6;
@@ -553,7 +554,7 @@
   };
   function $postEventCOROUTINE$2(timeEvent, resultContinuation) {
     CoroutineImpl.call(this, resultContinuation);
-    this.c3n_1 = timeEvent;
+    this.d3n_1 = timeEvent;
   }
   $postEventCOROUTINE$2.prototype.xe = function () {
     var suspendResult = this.qe_1;
@@ -564,24 +565,24 @@
           case 0:
             this.pe_1 = 2;
             var tmp_0 = this;
-            tmp_0.d3n_1 = get_jsonClient();
+            tmp_0.e3n_1 = get_jsonClient();
             var tmp_1 = this;
             Companion_getInstance_1();
-            tmp_1.e3n_1 = '/eventlog';
+            tmp_1.f3n_1 = '/eventlog';
             var tmp_2 = this;
             var tmp0_apply = new HttpRequestBuilder();
-            url(tmp0_apply, this.e3n_1);
+            url(tmp0_apply, this.f3n_1);
             contentType(tmp0_apply, Application_getInstance().m1h_1);
-            var tmp0_subject = this.c3n_1;
+            var tmp0_subject = this.d3n_1;
             if (tmp0_subject == null) {
               tmp0_apply.z2n_1 = EmptyContent_getInstance();
               tmp0_apply.v2t(null);
             } else {
               if (tmp0_subject instanceof OutgoingContent) {
-                tmp0_apply.z2n_1 = this.c3n_1;
+                tmp0_apply.z2n_1 = this.d3n_1;
                 tmp0_apply.v2t(null);
               } else {
-                tmp0_apply.z2n_1 = this.c3n_1;
+                tmp0_apply.z2n_1 = this.d3n_1;
                 var tmp_3 = JsType_getInstance();
                 var tmp_4 = getKClass(TimeEvent);
                 var tmp_5;
@@ -600,10 +601,10 @@
               }
             }
 
-            tmp_2.f3n_1 = tmp0_apply;
-            this.f3n_1.x2n_1 = Companion_getInstance().e1n_1;
+            tmp_2.g3n_1 = tmp0_apply;
+            this.g3n_1.x2n_1 = Companion_getInstance().e1n_1;
             this.oe_1 = 1;
-            suspendResult = (new HttpStatement(this.f3n_1, this.d3n_1)).q3d(this);
+            suspendResult = (new HttpStatement(this.g3n_1, this.e3n_1)).q3d(this);
             if (suspendResult === get_COROUTINE_SUSPENDED()) {
               return suspendResult;
             }
@@ -676,40 +677,56 @@
   function App$lambda($this$FC, it) {
     init_properties_Client_kt_ugefrl();
     var tmp = BrowserRouter;
-    $this$FC.k3l(tmp, App$lambda$lambda);
+    $this$FC.l3l(tmp, App$lambda$lambda);
     return Unit_getInstance();
   }
   function App$lambda$lambda($this$invoke) {
     init_properties_Client_kt_ugefrl();
     var tmp = Routes;
-    $this$invoke.k3l(tmp, App$lambda$lambda$lambda);
+    $this$invoke.l3l(tmp, App$lambda$lambda$lambda);
     return Unit_getInstance();
   }
   function App$lambda$lambda$lambda($this$invoke) {
     init_properties_Client_kt_ugefrl();
     var tmp = Route;
-    $this$invoke.k3l(tmp, App$lambda$lambda$lambda$lambda);
+    $this$invoke.l3l(tmp, App$lambda$lambda$lambda$lambda);
     var tmp_0 = Route;
-    $this$invoke.k3l(tmp_0, App$lambda$lambda$lambda$lambda_0);
+    $this$invoke.l3l(tmp_0, App$lambda$lambda$lambda$lambda_0);
     var tmp_1 = Route;
-    $this$invoke.k3l(tmp_1, App$lambda$lambda$lambda$lambda_1);
+    $this$invoke.l3l(tmp_1, App$lambda$lambda$lambda$lambda_1);
     return Unit_getInstance();
   }
   function App$lambda$lambda$lambda$lambda($this$invoke) {
     init_properties_Client_kt_ugefrl();
-    $this$invoke.path = '/clock';
+    $this$invoke.path = 'clock';
     $this$invoke.element = create(get_ClockPage());
     return Unit_getInstance();
   }
   function App$lambda$lambda$lambda$lambda_0($this$invoke) {
     init_properties_Client_kt_ugefrl();
-    $this$invoke.path = '/admin';
+    $this$invoke.path = 'admin';
+    $this$invoke.element = create(get_adminOutlet());
+    var tmp = Route;
+    $this$invoke.l3l(tmp, App$lambda$lambda$lambda$lambda$lambda);
+    var tmp_0 = Route;
+    $this$invoke.l3l(tmp_0, App$lambda$lambda$lambda$lambda$lambda_0);
+    return Unit_getInstance();
+  }
+  function App$lambda$lambda$lambda$lambda$lambda($this$invoke) {
+    init_properties_Client_kt_ugefrl();
+    $this$invoke.index = true;
     $this$invoke.element = create(get_logTable());
+    return Unit_getInstance();
+  }
+  function App$lambda$lambda$lambda$lambda$lambda_0($this$invoke) {
+    init_properties_Client_kt_ugefrl();
+    $this$invoke.path = 'employees';
+    $this$invoke.element = create(get_employeeManagement());
     return Unit_getInstance();
   }
   function App$lambda$lambda$lambda$lambda_1($this$invoke) {
     init_properties_Client_kt_ugefrl();
-    $this$invoke.path = '/';
+    $this$invoke.path = '*';
     $this$invoke.element = create(get_pageNotFound());
     return Unit_getInstance();
   }
@@ -722,6 +739,53 @@
       scope = MainScope();
     }
   }
+  function get_employeeManagement() {
+    init_properties_AdminEmpManagement_kt_zf3iyq();
+    return employeeManagement;
+  }
+  var employeeManagement;
+  function employeeManagement$lambda($this$FC, it) {
+    init_properties_AdminEmpManagement_kt_zf3iyq();
+    var tmp$ret$3;
+    // Inline function 'react.dom.html.ReactHTML.div' call
+    var tmp0__get_div__2k2o9m = ReactHTML_getInstance();
+    var tmp$ret$2;
+    // Inline function 'react.IntrinsicType' call
+    var tmp$ret$1;
+    // Inline function 'kotlin.js.unsafeCast' call
+    var tmp$ret$0;
+    // Inline function 'kotlin.js.asDynamic' call
+    tmp$ret$0 = 'div';
+    tmp$ret$1 = tmp$ret$0;
+    tmp$ret$2 = tmp$ret$1;
+    tmp$ret$3 = tmp$ret$2;
+    var tmp = tmp$ret$3;
+    $this$FC.l3l(tmp, employeeManagement$lambda$lambda);
+    return Unit_getInstance();
+  }
+  function employeeManagement$lambda$lambda($this$invoke) {
+    init_properties_AdminEmpManagement_kt_zf3iyq();
+    var tmp$ret$2;
+    // Inline function 'csstype.ClassName' call
+    var tmp$ret$1;
+    // Inline function 'kotlin.js.unsafeCast' call
+    var tmp$ret$0;
+    // Inline function 'kotlin.js.asDynamic' call
+    tmp$ret$0 = 'container';
+    tmp$ret$1 = tmp$ret$0;
+    tmp$ret$2 = tmp$ret$1;
+    $this$invoke.className = tmp$ret$2;
+    $this$invoke.j3l('lmao');
+    return Unit_getInstance();
+  }
+  var properties_initialized_AdminEmpManagement_kt_nhxyu6;
+  function init_properties_AdminEmpManagement_kt_zf3iyq() {
+    if (properties_initialized_AdminEmpManagement_kt_nhxyu6) {
+    } else {
+      properties_initialized_AdminEmpManagement_kt_nhxyu6 = true;
+      employeeManagement = FC(employeeManagement$lambda);
+    }
+  }
   function get_logTable() {
     init_properties_AdminHome_kt_tku6p2();
     return logTable;
@@ -732,8 +796,8 @@
     var tmp0_iterator = employees.j();
     while (tmp0_iterator.k()) {
       var employee = tmp0_iterator.l();
-      if (employee.p3l_1 === id) {
-        return employee.o3l_1;
+      if (employee.q3l_1 === id) {
+        return employee.p3l_1;
       }
     }
     return '?';
@@ -758,7 +822,7 @@
     tmp$ret$2 = tmp$ret$1;
     tmp$ret$3 = tmp$ret$2;
     var tmp_0 = tmp$ret$3;
-    $this$FC.k3l(tmp_0, logTable$lambda$lambda(events$delegate, employees$delegate));
+    $this$FC.l3l(tmp_0, logTable$lambda$lambda(events$delegate, employees$delegate));
     return Unit_getInstance();
   }
   function invoke$lambda($employees$delegate) {
@@ -808,8 +872,8 @@
     return tmp$ret$0[1](value);
   }
   function logTable$lambda$slambda($employees$delegate, $events$delegate, resultContinuation) {
-    this.o3n_1 = $employees$delegate;
-    this.p3n_1 = $events$delegate;
+    this.p3n_1 = $employees$delegate;
+    this.q3n_1 = $events$delegate;
     CoroutineImpl.call(this, resultContinuation);
   }
   logTable$lambda$slambda.prototype.l14 = function ($this$launch, $cont) {
@@ -837,8 +901,8 @@
 
             continue $sm;
           case 1:
-            this.r3n_1 = suspendResult;
-            invoke$lambda_0(this.o3n_1, this.r3n_1);
+            this.s3n_1 = suspendResult;
+            invoke$lambda_0(this.p3n_1, this.s3n_1);
             this.oe_1 = 2;
             suspendResult = getEvents(this);
             if (suspendResult === get_COROUTINE_SUSPENDED()) {
@@ -848,7 +912,7 @@
             continue $sm;
           case 2:
             var ARGUMENT = suspendResult;
-            invoke$lambda_2(this.p3n_1, ARGUMENT);
+            invoke$lambda_2(this.q3n_1, ARGUMENT);
             return Unit_getInstance();
           case 3:
             throw this.re_1;
@@ -864,8 +928,8 @@
      while (true);
   };
   logTable$lambda$slambda.prototype.m14 = function ($this$launch, completion) {
-    var i = new logTable$lambda$slambda(this.o3n_1, this.p3n_1, completion);
-    i.q3n_1 = $this$launch;
+    var i = new logTable$lambda$slambda(this.p3n_1, this.q3n_1, completion);
+    i.r3n_1 = $this$launch;
     return i;
   };
   function logTable$lambda$slambda_0($employees$delegate, $events$delegate, resultContinuation) {
@@ -892,7 +956,7 @@
     tmp$ret$2 = tmp$ret$1;
     tmp$ret$3 = tmp$ret$2;
     var tmp = tmp$ret$3;
-    $this$invoke.k3l(tmp, logTable$lambda$lambda$lambda$lambda$lambda);
+    $this$invoke.l3l(tmp, logTable$lambda$lambda$lambda$lambda$lambda);
     return Unit_getInstance();
   }
   function logTable$lambda$lambda$lambda$lambda$lambda($this$invoke) {
@@ -911,7 +975,7 @@
     tmp$ret$2 = tmp$ret$1;
     tmp$ret$3 = tmp$ret$2;
     var tmp = tmp$ret$3;
-    $this$invoke.k3l(tmp, logTable$lambda$lambda$lambda$lambda$lambda$lambda);
+    $this$invoke.l3l(tmp, logTable$lambda$lambda$lambda$lambda$lambda$lambda);
     var tmp$ret$7;
     // Inline function 'react.dom.html.ReactHTML.th' call
     var tmp1__get_th__sddrk4 = ReactHTML_getInstance();
@@ -926,7 +990,7 @@
     tmp$ret$6 = tmp$ret$5;
     tmp$ret$7 = tmp$ret$6;
     var tmp_0 = tmp$ret$7;
-    $this$invoke.k3l(tmp_0, logTable$lambda$lambda$lambda$lambda$lambda$lambda_0);
+    $this$invoke.l3l(tmp_0, logTable$lambda$lambda$lambda$lambda$lambda$lambda_0);
     var tmp$ret$11;
     // Inline function 'react.dom.html.ReactHTML.th' call
     var tmp2__get_th__vmdqcl = ReactHTML_getInstance();
@@ -941,7 +1005,7 @@
     tmp$ret$10 = tmp$ret$9;
     tmp$ret$11 = tmp$ret$10;
     var tmp_1 = tmp$ret$11;
-    $this$invoke.k3l(tmp_1, logTable$lambda$lambda$lambda$lambda$lambda$lambda_1);
+    $this$invoke.l3l(tmp_1, logTable$lambda$lambda$lambda$lambda$lambda$lambda_1);
     var tmp$ret$15;
     // Inline function 'react.dom.html.ReactHTML.th' call
     var tmp3__get_th__yvdp52 = ReactHTML_getInstance();
@@ -956,7 +1020,7 @@
     tmp$ret$14 = tmp$ret$13;
     tmp$ret$15 = tmp$ret$14;
     var tmp_2 = tmp$ret$15;
-    $this$invoke.k3l(tmp_2, logTable$lambda$lambda$lambda$lambda$lambda$lambda_2);
+    $this$invoke.l3l(tmp_2, logTable$lambda$lambda$lambda$lambda$lambda$lambda_2);
     return Unit_getInstance();
   }
   function logTable$lambda$lambda$lambda$lambda$lambda$lambda($this$invoke) {
@@ -981,26 +1045,26 @@
   }
   function logTable$lambda$lambda$lambda$lambda$lambda$lambda_3($event) {
     return function ($this$invoke) {
-      $this$invoke.j3l(toString($event.t3l_1));
+      $this$invoke.j3l(toString($event.u3l_1));
       return Unit_getInstance();
     };
   }
   function logTable$lambda$lambda$lambda$lambda$lambda$lambda_4($event, $employees$delegate) {
     return function ($this$invoke) {
-      $this$invoke.j3l(getName(invoke$lambda($employees$delegate), $event.t3l_1));
+      $this$invoke.j3l(getName(invoke$lambda($employees$delegate), $event.u3l_1));
       return Unit_getInstance();
     };
   }
   function logTable$lambda$lambda$lambda$lambda$lambda$lambda_5($event) {
     return function ($this$invoke) {
-      var tmp0_subject = $event.u3l_1;
+      var tmp0_subject = $event.v3l_1;
       $this$invoke.j3l(tmp0_subject === get_ENTER() ? 'In' : tmp0_subject === get_EXIT() ? 'Out' : '?');
       return Unit_getInstance();
     };
   }
   function logTable$lambda$lambda$lambda$lambda$lambda$lambda_6($event) {
     return function ($this$invoke) {
-      $this$invoke.j3l(toString($event.v3l_1));
+      $this$invoke.j3l(toString($event.w3l_1));
       return Unit_getInstance();
     };
   }
@@ -1020,7 +1084,7 @@
       tmp$ret$2 = tmp$ret$1;
       tmp$ret$3 = tmp$ret$2;
       var tmp = tmp$ret$3;
-      $this$invoke.k3l(tmp, logTable$lambda$lambda$lambda$lambda$lambda$lambda_3($event));
+      $this$invoke.l3l(tmp, logTable$lambda$lambda$lambda$lambda$lambda$lambda_3($event));
       var tmp$ret$7;
       // Inline function 'react.dom.html.ReactHTML.td' call
       var tmp1__get_td__sddrnk = ReactHTML_getInstance();
@@ -1035,7 +1099,7 @@
       tmp$ret$6 = tmp$ret$5;
       tmp$ret$7 = tmp$ret$6;
       var tmp_0 = tmp$ret$7;
-      $this$invoke.k3l(tmp_0, logTable$lambda$lambda$lambda$lambda$lambda$lambda_4($event, $employees$delegate));
+      $this$invoke.l3l(tmp_0, logTable$lambda$lambda$lambda$lambda$lambda$lambda_4($event, $employees$delegate));
       var tmp$ret$11;
       // Inline function 'react.dom.html.ReactHTML.td' call
       var tmp2__get_td__vmdqg1 = ReactHTML_getInstance();
@@ -1050,7 +1114,7 @@
       tmp$ret$10 = tmp$ret$9;
       tmp$ret$11 = tmp$ret$10;
       var tmp_1 = tmp$ret$11;
-      $this$invoke.k3l(tmp_1, logTable$lambda$lambda$lambda$lambda$lambda$lambda_5($event));
+      $this$invoke.l3l(tmp_1, logTable$lambda$lambda$lambda$lambda$lambda$lambda_5($event));
       var tmp$ret$15;
       // Inline function 'react.dom.html.ReactHTML.td' call
       var tmp3__get_td__yvdp8i = ReactHTML_getInstance();
@@ -1065,7 +1129,7 @@
       tmp$ret$14 = tmp$ret$13;
       tmp$ret$15 = tmp$ret$14;
       var tmp_2 = tmp$ret$15;
-      $this$invoke.k3l(tmp_2, logTable$lambda$lambda$lambda$lambda$lambda$lambda_6($event));
+      $this$invoke.l3l(tmp_2, logTable$lambda$lambda$lambda$lambda$lambda$lambda_6($event));
       return Unit_getInstance();
     };
   }
@@ -1088,7 +1152,7 @@
         tmp$ret$2 = tmp$ret$1;
         tmp$ret$3 = tmp$ret$2;
         var tmp = tmp$ret$3;
-        $this$invoke.k3l(tmp, logTable$lambda$lambda$lambda$lambda$lambda_0(event, $employees$delegate));
+        $this$invoke.l3l(tmp, logTable$lambda$lambda$lambda$lambda$lambda_0(event, $employees$delegate));
       }
       return Unit_getInstance();
     };
@@ -1109,7 +1173,7 @@
       tmp$ret$2 = tmp$ret$1;
       tmp$ret$3 = tmp$ret$2;
       var tmp = tmp$ret$3;
-      $this$invoke.k3l(tmp, logTable$lambda$lambda$lambda$lambda);
+      $this$invoke.l3l(tmp, logTable$lambda$lambda$lambda$lambda);
       var tmp$ret$7;
       // Inline function 'react.dom.html.ReactHTML.tbody' call
       var tmp1__get_tbody__plgzey = ReactHTML_getInstance();
@@ -1124,7 +1188,7 @@
       tmp$ret$6 = tmp$ret$5;
       tmp$ret$7 = tmp$ret$6;
       var tmp_0 = tmp$ret$7;
-      $this$invoke.k3l(tmp_0, logTable$lambda$lambda$lambda$lambda_0($events$delegate, $employees$delegate));
+      $this$invoke.l3l(tmp_0, logTable$lambda$lambda$lambda$lambda_0($events$delegate, $employees$delegate));
       var tmp$ret$10;
       // Inline function 'csstype.ClassName' call
       var tmp$ret$9;
@@ -1165,7 +1229,7 @@
       tmp$ret$5 = tmp$ret$4;
       tmp$ret$6 = tmp$ret$5;
       var tmp = tmp$ret$6;
-      $this$invoke.k3l(tmp, logTable$lambda$lambda$lambda($events$delegate, $employees$delegate));
+      $this$invoke.l3l(tmp, logTable$lambda$lambda$lambda($events$delegate, $employees$delegate));
       return Unit_getInstance();
     };
   }
@@ -1175,6 +1239,24 @@
     } else {
       properties_initialized_AdminHome_kt_on70hq = true;
       logTable = FC(logTable$lambda);
+    }
+  }
+  function get_adminOutlet() {
+    init_properties_AdminOut_kt_9dv7t1();
+    return adminOutlet;
+  }
+  var adminOutlet;
+  function adminOutlet$lambda($this$FC, it) {
+    init_properties_AdminOut_kt_9dv7t1();
+    $this$FC.k3l(Outlet);
+    return Unit_getInstance();
+  }
+  var properties_initialized_AdminOut_kt_49dfz5;
+  function init_properties_AdminOut_kt_9dv7t1() {
+    if (properties_initialized_AdminOut_kt_49dfz5) {
+    } else {
+      properties_initialized_AdminOut_kt_49dfz5 = true;
+      adminOutlet = FC(adminOutlet$lambda);
     }
   }
   function get_ClockPage() {
@@ -1225,7 +1307,7 @@
     tmp$ret$6 = tmp$ret$5;
     tmp$ret$7 = tmp$ret$6;
     var tmp_0 = tmp$ret$7;
-    $this$FC.k3l(tmp_0, ClockPage$lambda$lambda_1(submitHandler, changeHandler, idText));
+    $this$FC.l3l(tmp_0, ClockPage$lambda$lambda_1(submitHandler, changeHandler, idText));
     var tmp$ret$11;
     // Inline function 'react.dom.html.ReactHTML.div' call
     var tmp1__get_div__r5s89x = ReactHTML_getInstance();
@@ -1240,7 +1322,7 @@
     tmp$ret$10 = tmp$ret$9;
     tmp$ret$11 = tmp$ret$10;
     var tmp_1 = tmp$ret$11;
-    $this$FC.k3l(tmp_1, ClockPage$lambda$lambda_2);
+    $this$FC.l3l(tmp_1, ClockPage$lambda$lambda_2);
     return Unit_getInstance();
   }
   function invoke$lambda_3($employees$delegate) {
@@ -1290,8 +1372,8 @@
     return tmp$ret$0[1](value);
   }
   function ClockPage$lambda$slambda($employees$delegate, $events$delegate, resultContinuation) {
-    this.o3o_1 = $employees$delegate;
-    this.p3o_1 = $events$delegate;
+    this.p3o_1 = $employees$delegate;
+    this.q3o_1 = $events$delegate;
     CoroutineImpl.call(this, resultContinuation);
   }
   ClockPage$lambda$slambda.prototype.l14 = function ($this$launch, $cont) {
@@ -1319,8 +1401,8 @@
 
             continue $sm;
           case 1:
-            this.r3o_1 = suspendResult;
-            invoke$lambda_4(this.o3o_1, this.r3o_1);
+            this.s3o_1 = suspendResult;
+            invoke$lambda_4(this.p3o_1, this.s3o_1);
             this.oe_1 = 2;
             suspendResult = getEvents(this);
             if (suspendResult === get_COROUTINE_SUSPENDED()) {
@@ -1330,7 +1412,7 @@
             continue $sm;
           case 2:
             var ARGUMENT = suspendResult;
-            invoke$lambda_6(this.p3o_1, ARGUMENT);
+            invoke$lambda_6(this.q3o_1, ARGUMENT);
             return Unit_getInstance();
           case 3:
             throw this.re_1;
@@ -1346,8 +1428,8 @@
      while (true);
   };
   ClockPage$lambda$slambda.prototype.m14 = function ($this$launch, completion) {
-    var i = new ClockPage$lambda$slambda(this.o3o_1, this.p3o_1, completion);
-    i.q3o_1 = $this$launch;
+    var i = new ClockPage$lambda$slambda(this.p3o_1, this.q3o_1, completion);
+    i.r3o_1 = $this$launch;
     return i;
   };
   function ClockPage$lambda$slambda_0($employees$delegate, $events$delegate, resultContinuation) {
@@ -1359,11 +1441,11 @@
     return l;
   }
   function ClockPage$lambda$lambda$slambda($success, $idText, $message, $employees$delegate, $events$delegate, resultContinuation) {
-    this.a3p_1 = $success;
-    this.b3p_1 = $idText;
-    this.c3p_1 = $message;
-    this.d3p_1 = $employees$delegate;
-    this.e3p_1 = $events$delegate;
+    this.b3p_1 = $success;
+    this.c3p_1 = $idText;
+    this.d3p_1 = $message;
+    this.e3p_1 = $employees$delegate;
+    this.f3p_1 = $events$delegate;
     CoroutineImpl.call(this, resultContinuation);
   }
   ClockPage$lambda$lambda$slambda.prototype.l14 = function ($this$launch, $cont) {
@@ -1384,7 +1466,7 @@
           case 0:
             this.pe_1 = 2;
             this.oe_1 = 1;
-            suspendResult = LogEvent(this.b3p_1, invoke$lambda_3(this.d3p_1), invoke$lambda_5(this.e3p_1), this);
+            suspendResult = LogEvent(this.c3p_1, invoke$lambda_3(this.e3p_1), invoke$lambda_5(this.f3p_1), this);
             if (suspendResult === get_COROUTINE_SUSPENDED()) {
               return suspendResult;
             }
@@ -1392,19 +1474,19 @@
             continue $sm;
           case 1:
             var ARGUMENT = suspendResult;
-            this.a3p_1._v = ARGUMENT;
-            if (this.a3p_1._v) {
+            this.b3p_1._v = ARGUMENT;
+            if (this.b3p_1._v) {
               var name = '';
-              var tmp0_iterator = invoke$lambda_3(this.d3p_1).j();
+              var tmp0_iterator = invoke$lambda_3(this.e3p_1).j();
               while (tmp0_iterator.k()) {
                 var employee = tmp0_iterator.l();
-                if (employee.p3l_1 === this.b3p_1) {
-                  name = employee.o3l_1;
+                if (employee.q3l_1 === this.c3p_1) {
+                  name = employee.p3l_1;
                 }
               }
-              this.c3p_1._v.innerHTML = '<p>Thank you, ' + name + '!<\/p>';
+              this.d3p_1._v.innerHTML = '<p>Thank you, ' + name + '!<\/p>';
             } else {
-              this.c3p_1._v.innerHTML = '<p>No employee with that ID exists. If the problem persists, please see your supervisor.<\/p>';
+              this.d3p_1._v.innerHTML = '<p>No employee with that ID exists. If the problem persists, please see your supervisor.<\/p>';
             }
 
             return Unit_getInstance();
@@ -1422,8 +1504,8 @@
      while (true);
   };
   ClockPage$lambda$lambda$slambda.prototype.m14 = function ($this$launch, completion) {
-    var i = new ClockPage$lambda$lambda$slambda(this.a3p_1, this.b3p_1, this.c3p_1, this.d3p_1, this.e3p_1, completion);
-    i.f3p_1 = $this$launch;
+    var i = new ClockPage$lambda$lambda$slambda(this.b3p_1, this.c3p_1, this.d3p_1, this.e3p_1, this.f3p_1, completion);
+    i.g3p_1 = $this$launch;
     return i;
   };
   function ClockPage$lambda$lambda$slambda_0($success, $idText, $message, $employees$delegate, $events$delegate, resultContinuation) {
@@ -1532,7 +1614,7 @@
       tmp$ret$5 = tmp$ret$4;
       tmp$ret$6 = tmp$ret$5;
       var tmp = tmp$ret$6;
-      $this$invoke.k3l(tmp, ClockPage$lambda$lambda$lambda);
+      $this$invoke.l3l(tmp, ClockPage$lambda$lambda$lambda);
       var tmp$ret$10;
       // Inline function 'react.dom.html.ReactHTML.input' call
       var tmp1__get_input__umcb5q = ReactHTML_getInstance();
@@ -1547,7 +1629,7 @@
       tmp$ret$9 = tmp$ret$8;
       tmp$ret$10 = tmp$ret$9;
       var tmp_0 = tmp$ret$10;
-      $this$invoke.k3l(tmp_0, ClockPage$lambda$lambda$lambda_0($changeHandler, $idText));
+      $this$invoke.l3l(tmp_0, ClockPage$lambda$lambda$lambda_0($changeHandler, $idText));
       var tmp$ret$14;
       // Inline function 'react.dom.html.ReactHTML.input' call
       var tmp2__get_input__zh0yd9 = ReactHTML_getInstance();
@@ -1562,7 +1644,7 @@
       tmp$ret$13 = tmp$ret$12;
       tmp$ret$14 = tmp$ret$13;
       var tmp_1 = tmp$ret$14;
-      $this$invoke.k3l(tmp_1, ClockPage$lambda$lambda$lambda_1);
+      $this$invoke.l3l(tmp_1, ClockPage$lambda$lambda$lambda_1);
       return Unit_getInstance();
     };
   }
@@ -1583,9 +1665,9 @@
   }
   function $LogEventCOROUTINE$4(id, employees, events, resultContinuation) {
     CoroutineImpl.call(this, resultContinuation);
-    this.a3o_1 = id;
-    this.b3o_1 = employees;
-    this.c3o_1 = events;
+    this.b3o_1 = id;
+    this.c3o_1 = employees;
+    this.d3o_1 = events;
   }
   $LogEventCOROUTINE$4.prototype.xe = function () {
     var suspendResult = this.qe_1;
@@ -1595,36 +1677,36 @@
         switch (tmp) {
           case 0:
             this.pe_1 = 2;
-            this.d3o_1 = false;
-            var tmp0_iterator = this.b3o_1.j();
+            this.e3o_1 = false;
+            var tmp0_iterator = this.c3o_1.j();
             $l$loop: while (tmp0_iterator.k()) {
               var employee = tmp0_iterator.l();
-              if (employee.p3l_1 === this.a3o_1) {
-                this.d3o_1 = true;
+              if (employee.q3l_1 === this.b3o_1) {
+                this.e3o_1 = true;
                 break $l$loop;
               }
             }
 
-            if (!this.d3o_1) {
+            if (!this.e3o_1) {
               return false;
             }
 
-            this.e3o_1 = get_ENTER();
-            var tmp1_iterator = reversed(this.c3o_1).j();
+            this.f3o_1 = get_ENTER();
+            var tmp1_iterator = reversed(this.d3o_1).j();
             $l$loop_0: while (tmp1_iterator.k()) {
               var lastEvent = tmp1_iterator.l();
-              var lastId = lastEvent.t3l_1;
-              if (this.a3o_1 === lastId) {
-                if (lastEvent.u3l_1 === get_ENTER()) {
-                  this.e3o_1 = get_EXIT();
+              var lastId = lastEvent.u3l_1;
+              if (this.b3o_1 === lastId) {
+                if (lastEvent.v3l_1 === get_ENTER()) {
+                  this.f3o_1 = get_EXIT();
                 }
                 break $l$loop_0;
               }
             }
 
-            this.f3o_1 = System_getInstance().y3k().toString();
+            this.g3o_1 = System_getInstance().y3k().toString();
             this.oe_1 = 1;
-            suspendResult = postEvent(new TimeEvent(this.a3o_1, this.e3o_1, this.f3o_1), this);
+            suspendResult = postEvent(new TimeEvent(this.b3o_1, this.f3o_1, this.g3o_1), this);
             if (suspendResult === get_COROUTINE_SUSPENDED()) {
               return suspendResult;
             }
@@ -1674,7 +1756,7 @@
     tmp$ret$2 = tmp$ret$1;
     tmp$ret$3 = tmp$ret$2;
     var tmp = tmp$ret$3;
-    $this$FC.k3l(tmp, pageNotFound$lambda$lambda);
+    $this$FC.l3l(tmp, pageNotFound$lambda$lambda);
     return Unit_getInstance();
   }
   function pageNotFound$lambda$lambda($this$invoke) {
