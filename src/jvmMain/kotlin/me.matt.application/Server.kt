@@ -7,7 +7,6 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
-import io.ktor.server.html.*
 import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
@@ -50,8 +49,7 @@ val events = database.getCollection<TimeEvent>("events")
 
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8080
-    val host = System.getenv("HOST")?.toString() ?: "127.0.0.1"
-    embeddedServer(Netty, port, host = host, module = Application::myApplicationModule).start(wait = true)
+    embeddedServer(Netty, port, module = Application::myApplicationModule).start(wait = true)
 }
 
 fun Application.myApplicationModule() {
@@ -65,20 +63,6 @@ fun Application.myApplicationModule() {
     }
     routing {
 
-        route("/") {
-            get("{...}") {
-                call.respondHtml(HttpStatusCode.OK, HTML::index)
-            }
-            get() {
-                call.respondHtml(HttpStatusCode.OK, HTML::index)
-            }
-        }
-        static("/static") {
-            resources(".")
-        }
-        static("{...}") {
-            resources(".")
-        }
         route(Employee.path) {
             get {
                 call.respond(employees.find().toList())
@@ -104,19 +88,23 @@ fun Application.myApplicationModule() {
                 call.respond(HttpStatusCode.OK)
             }
         }
-//        get("/") {
-//            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
-//                ContentType.Text.Html)
-//        }
-////        get("/admin") {
-////            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
-////                ContentType.Text.Html)
-////        }
-////        get("/admin/employees") {
-////            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
-////                ContentType.Text.Html)
-////        }
-
+        get("/") {
+            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+                ContentType.Text.Html)
+        }
+        get("/clock") {
+            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+                ContentType.Text.Html)
+        }
+        get("/admin") {
+            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+                ContentType.Text.Html)
+        }
+        static("/") {
+            resources("")
+        }
+        static("/static") {
+            resources()
+        }
     }
 }
-
