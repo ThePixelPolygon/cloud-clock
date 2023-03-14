@@ -22,15 +22,23 @@ fun App(): FC<Props> {
         BrowserRouter {
             Routes {
                 Route {
-                    path = "/clock"
+                    path = "clock"
                     element = pages.clock.ClockPage.create()
                 }
                 Route {
-                    path = "/admin"
-                    element = pages.admin.logTable.create()
+                    path = "admin"
+                    element = pages.admin.adminOutlet.create()
+                    Route {
+                        index = true
+                        element = pages.admin.logTable.create()
+                    }
+                    Route {
+                        path = "employees"
+                        element = pages.admin.employeeManagement.create()
+                    }
                 }
                 Route {
-                    path = "/"
+                    path = "*"
                     element = pages.pageNotFound.create()
                 }
             }
