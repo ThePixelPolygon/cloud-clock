@@ -24,7 +24,7 @@ fun HTML.index() {
     head {
         title("Cloud Clock")
         link(rel = "stylesheet", href = "/static/css/bootstrap.css")
-
+        meta("viewport", "width=device-width, initial-scale=1")
     }
     body {
         nav {
@@ -36,13 +36,14 @@ fun HTML.index() {
                     type = ButtonType.button
                     attributes["data-bs-toggle"] = "collapse"
                     attributes["data-bs-target"] = "#navbarnav"
-                    attributes["aria-controls"] = "navbarNav"
+                    attributes["aria-controls"] = "navbarnav"
                     attributes["aria-expanded"] = "false"
                     attributes["aria-label"] = "Toggle navigation"
+                    span("navbar-toggler-icon")
                 }
                 div {
                     classes = setOf("collapse", "navbar-collapse")
-                    id = "navbarNav"
+                    id = "navbarnav"
                     ul {
                         classes = setOf("navbar-nav")
                         li {
