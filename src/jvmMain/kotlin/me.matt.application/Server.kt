@@ -1,5 +1,6 @@
 package me.matt.application
 
+import BusinessDay
 import Employee
 import TimeEvent
 import com.mongodb.ConnectionString
@@ -26,10 +27,49 @@ fun HTML.index() {
 
     }
     body {
+        nav {
+            classes = setOf("navbar", "navbar-expand-md", "navbar-light", "bg-light")
+            div {
+                classes = setOf("container-fluid")
+                button {
+                    classes = setOf("navbar-toggler")
+                    type = ButtonType.button
+                    attributes["data-bs-toggle"] = "collapse"
+                    attributes["data-bs-target"] = "#navbarnav"
+                    attributes["aria-controls"] = "navbarNav"
+                    attributes["aria-expanded"] = "false"
+                    attributes["aria-label"] = "Toggle navigation"
+                }
+                div {
+                    classes = setOf("collapse", "navbar-collapse")
+                    id = "navbarNav"
+                    ul {
+                        classes = setOf("navbar-nav")
+                        li {
+                            classes = setOf("nav-item")
+                            a {
+                                classes = setOf("nav-link")
+                                href = "/clock"
+                                +("Clock")
+                            }
+                        }
+                        li {
+                            classes = setOf("nav-item")
+                            a {
+                                classes = setOf("nav-link")
+                                href = "/admin"
+                                +("Administrator Console")
+                            }
+                        }
+                    }
+                }
+            }
+        }
         div {
 
         }
         div {
+            classes = setOf("mt-5")
             id = "root"
         }
         script(src = "/static/js/bootstrap.bundle.js") {}
@@ -75,9 +115,11 @@ fun Application.myApplicationModule() {
         }
         static("/static") {
             resources(".")
+            resource("cloud-clock.js")
         }
         static("{...}") {
             resources(".")
+            resource("cloud-clock.js")
         }
         route(Employee.path) {
             get {
@@ -105,6 +147,14 @@ fun Application.myApplicationModule() {
                 val event = call.receive<TimeEvent>()
                 events.insertOne(event)
                 call.respond(HttpStatusCode.OK)
+            }
+        }
+        route(BusinessDay.path) {
+            get {
+
+            }
+            get("/{day}") {
+
             }
         }
 //        get("/") {

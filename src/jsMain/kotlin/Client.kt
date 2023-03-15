@@ -36,6 +36,10 @@ fun App(): FC<Props> {
                         path = "employees"
                         element = pages.admin.employeeManagement.create()
                     }
+                    Route {
+                        path = "hours"
+                        element = pages.admin.regularHoursList.create()
+                    }
                 }
                 Route {
                     path = "*"

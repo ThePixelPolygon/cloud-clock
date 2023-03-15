@@ -2,21 +2,13 @@ package pages.admin
 
 import Employee
 import csstype.ClassName
-import csstype.HtmlAttributes
 import getEmployee
-import kotlinx.browser.document
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import react.FC
 import react.Props
 import react.dom.html.ReactHTML.div
-import org.w3c.dom.*
-import react.dom.html.DataHTMLAttributes
-import react.dom.html.ReactHTML.data
-import react.dom.html.ReactHTML.datalist
 import react.dom.html.ReactHTML.form
-import react.useState
 
 val scope = MainScope()
 
