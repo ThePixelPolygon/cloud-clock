@@ -14,6 +14,7 @@ import react.router.Outlet
 
 val adminOutlet = FC<Props> {
     div {
+        className = ClassName("container-fluid")
         nav {
             ul {
                 className = ClassName("nav nav-tabs")
@@ -55,6 +56,9 @@ val adminOutlet = FC<Props> {
                 }
             }
         }
-        Outlet()
+        div {
+            className = ClassName("container-fluid mt-2")
+            Outlet()
+        }
     }
 }
