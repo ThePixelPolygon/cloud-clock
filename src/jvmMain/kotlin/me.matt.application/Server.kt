@@ -92,7 +92,7 @@ val events = database.getCollection<TimeEvent>("events")
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8080
     val host = System.getenv("HOST")?.toString() ?: "127.0.0.1"
-    embeddedServer(Netty, port, host = host, module = Application::myApplicationModule).start(wait = true)
+    embeddedServer(Netty, port, module = Application::myApplicationModule).start(wait = true)
 }
 
 fun Application.myApplicationModule() {
