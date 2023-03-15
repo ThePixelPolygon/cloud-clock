@@ -1,5 +1,6 @@
 package me.matt.application
 
+import BusinessDay
 import Employee
 import TimeEvent
 import com.mongodb.ConnectionString
@@ -7,6 +8,7 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
+import io.ktor.server.html.*
 import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
@@ -14,8 +16,67 @@ import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.html.*
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
+
+fun HTML.index() {
+    head {
+        title("Cloud Clock")
+        link(rel = "stylesheet", href = "/static/css/bootstrap.css")
+
+    }
+    body {
+        nav {
+            classes = setOf("navbar", "navbar-expand-md", "navbar-light", "bg-light")
+            div {
+                classes = setOf("container-fluid")
+                button {
+                    classes = setOf("navbar-toggler")
+                    type = ButtonType.button
+                    attributes["data-bs-toggle"] = "collapse"
+                    attributes["data-bs-target"] = "#navbarnav"
+                    attributes["aria-controls"] = "navbarNav"
+                    attributes["aria-expanded"] = "false"
+                    attributes["aria-label"] = "Toggle navigation"
+                }
+                div {
+                    classes = setOf("collapse", "navbar-collapse")
+                    id = "navbarNav"
+                    ul {
+                        classes = setOf("navbar-nav")
+                        li {
+                            classes = setOf("nav-item")
+                            a {
+                                classes = setOf("nav-link")
+                                href = "/clock"
+                                +("Clock")
+                            }
+                        }
+                        li {
+                            classes = setOf("nav-item")
+                            a {
+                                classes = setOf("nav-link")
+                                href = "/admin"
+                                +("Administrator Console")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        div {
+
+        }
+        div {
+            classes = setOf("mt-5")
+            id = "root"
+        }
+        script(src = "/static/js/bootstrap.bundle.js") {}
+        script(src = "/static/cloud-clock.js") {}
+    }
+}
+
 
 val connectionString: ConnectionString? = System.getenv("MONGODB_URI")?.let {
     ConnectionString("$it?retryWrites=false")
@@ -30,7 +91,8 @@ val events = database.getCollection<TimeEvent>("events")
 
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8080
-    embeddedServer(Netty, port, module = Application::myApplicationModule).start(wait = true)
+    val host = System.getenv("HOST")?.toString() ?: "127.0.0.1"
+    embeddedServer(Netty, port, host = host, module = Application::myApplicationModule).start(wait = true)
 }
 
 fun Application.myApplicationModule() {
@@ -43,7 +105,22 @@ fun Application.myApplicationModule() {
         allowMethod(HttpMethod.Delete)
     }
     routing {
-
+        route("/") {
+            get("{...}") {
+                call.respondHtml(HttpStatusCode.OK, HTML::index)
+            }
+            get() {
+                call.respondHtml(HttpStatusCode.OK, HTML::index)
+            }
+        }
+        static("/static") {
+            resources(".")
+            resource("cloud-clock.js")
+        }
+        static("{...}") {
+            resources(".")
+            resource("cloud-clock.js")
+        }
         route(Employee.path) {
             get {
                 call.respond(employees.find().toList())
@@ -58,6 +135,9 @@ fun Application.myApplicationModule() {
                 employees.findOneAndDelete("{ user_id: $id }")
                 call.respond(HttpStatusCode.OK)
             }
+            get("/{id}") {
+                call.respond(employees.find("{ user_id: ${call.parameters["id"]}}").toList()[0])
+            }
         }
         route(TimeEvent.path) {
             get {
@@ -69,23 +149,31 @@ fun Application.myApplicationModule() {
                 call.respond(HttpStatusCode.OK)
             }
         }
-        get("/") {
-            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
-                ContentType.Text.Html)
+        route(BusinessDay.path) {
+            get {
+
+            }
+            get("/{day}") {
+
+            }
         }
-        get("/clock") {
-            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
-                ContentType.Text.Html)
-        }
-        get("/admin") {
-            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
-                ContentType.Text.Html)
-        }
-        static("/") {
-            resources("")
-        }
-        static("/static") {
-            resources()
-        }
+//        get("/") {
+//            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+//                ContentType.Text.Html)
+//        }
+//        get("/clock") {
+//            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+//                ContentType.Text.Html)
+//        }
+//        get("/admin") {
+//            call.respondText(this::class.java.classLoader.getResource("index.html")!!.readText(),
+//                ContentType.Text.Html)
+//        }
+//        static("/") {
+//            resources("")
+//        }
+//        static("/static") {
+//            resources(".")
+//        }
     }
 }
