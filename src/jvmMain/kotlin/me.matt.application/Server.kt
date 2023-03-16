@@ -24,6 +24,7 @@ fun HTML.index() {
     head {
         title("Cloud Clock")
         link(rel = "stylesheet", href = "/static/css/bootstrap.css")
+        link(rel = "stylesheet", href = "https://fonts.googleapis.com/icon?family=Material+Icons")
         meta("viewport", "width=device-width, initial-scale=1")
     }
     body {
@@ -104,6 +105,7 @@ fun Application.myApplicationModule() {
         allowMethod(HttpMethod.Get)
         allowMethod(HttpMethod.Post)
         allowMethod(HttpMethod.Delete)
+        allowMethod(HttpMethod.Put)
     }
     routing {
         route("/") {
@@ -133,11 +135,18 @@ fun Application.myApplicationModule() {
             }
             delete("/{id}") {
                 val id = call.parameters["id"]
-                employees.findOneAndDelete("{ user_id: $id }")
+                employees.findOneAndDelete("{ user_id: '$id' }")
                 call.respond(HttpStatusCode.OK)
             }
             get("/{id}") {
-                call.respond(employees.find("{ user_id: ${call.parameters["id"]}}").toList()[0])
+                val id = call.parameters["id"]
+                var user = employees.findOne("{ user_id: '$id'}")
+                var response = user ?: "User not found"
+                call.respond(response)
+            }
+            put {
+                val emp = call.receive<List<Employee>>()
+                employees.replaceOne("{ user_id: '${emp[0].user_id}' }", emp[1])
             }
         }
         route(TimeEvent.path) {

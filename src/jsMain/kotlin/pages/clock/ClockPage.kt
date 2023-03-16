@@ -37,9 +37,6 @@ val ClockPage = FC<Props> { props ->
         it.preventDefault()
         var message = document.getElementById("message")!!
         message.innerHTML = ""
-
-        if (idText is String) {
-
             var success: Boolean = false
             scope.launch {
                 success = LogEvent(idText, employees, events)
@@ -57,12 +54,6 @@ val ClockPage = FC<Props> { props ->
                         "<p>No employee with that ID exists. If the problem persists, please see your supervisor.</p>"
                 }
             }
-
-        } else {
-            println("Long conversion failed.")
-            message.innerHTML =
-                "<p>Please enter a valid employee ID.</p>"
-        }
     }
 
     val changeHandler: ChangeEventHandler<HTMLInputElement> = {

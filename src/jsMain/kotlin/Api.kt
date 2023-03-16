@@ -21,10 +21,13 @@ suspend fun getEmployees(): List<Employee> {
     return jsonClient.get(Employee.path).body()
 }
 
-suspend fun getEmployee(id: String): Employee {
+suspend fun getEmployee(id: String): Employee? {
     return jsonClient.get(Employee.path + "/$id").body()
 }
 
+suspend fun deleteEmployee(id: String) {
+    jsonClient.delete(Employee.path + "/$id")
+}
 
 suspend fun postEvent(timeEvent: TimeEvent) {
     jsonClient.post(TimeEvent.path) {
@@ -40,3 +43,9 @@ suspend fun postEmployee(employee: Employee) {
     }
 }
 
+suspend fun updateEmployee(oldEmployee: Employee, newEmployee: Employee) {
+    jsonClient.put(Employee.path) {
+        contentType(ContentType.Application.Json)
+        setBody(listOf(oldEmployee, newEmployee))
+    }
+}
