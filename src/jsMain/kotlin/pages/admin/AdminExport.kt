@@ -10,6 +10,7 @@ import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.form
 import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.input
+import react.dom.html.ReactHTML.label
 
 val exportForm = FC<Props> {
     div {
@@ -23,12 +24,24 @@ val exportForm = FC<Props> {
                 js("alert(\"This function currently doesn't work right now.\")")
             }
             onSubmit = submitHandler
-            input {
-                className = ClassName("form-control")
-                type = InputType.date
+            label {
+                className = ClassName("form-label")
+                htmlFor = "from"
+                +("From")
             }
             input {
                 className = ClassName("form-control")
+                id = "from"
+                type = InputType.date
+            }
+            label {
+                className = ClassName("form-label")
+                htmlFor = "To"
+                +("To")
+            }
+            input {
+                className = ClassName("form-control")
+                id = "to"
                 type = InputType.date
             }
             input {

@@ -49,10 +49,10 @@ val logTable = FC<Props>{ props ->
                 for (event: TimeEvent in events) {
                     tr {
                         td {
-                            +(event.evt_id.toString())
+                            +(event.eventEmployee.user_id)
                         }
                         td {
-                            +(getName(employees, event.evt_id))
+                            +(event.eventEmployee.name)
                         }
                         td {
                             +(when(event.eventType) {

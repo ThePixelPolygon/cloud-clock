@@ -8,7 +8,7 @@ data class Employee (val name: String, val user_id: String){
 }
 
 @Serializable
-data class TimeEvent (val evt_id: String, val eventType: Int, val dateTime: String) {
+data class TimeEvent (val eventEmployee: Employee, val eventType: Int, val dateTime: String) {
 
     companion object {
         const val path = "/eventlog"

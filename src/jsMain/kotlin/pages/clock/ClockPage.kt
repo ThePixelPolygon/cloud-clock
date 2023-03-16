@@ -4,6 +4,7 @@ import EXIT
 import Employee
 import TimeEvent
 import csstype.ClassName
+import getEmployee
 import getEmployees
 import getEvents
 import kotlinx.browser.document
@@ -39,7 +40,7 @@ val ClockPage = FC<Props> { props ->
         message.innerHTML = ""
             var success: Boolean = false
             scope.launch {
-                success = LogEvent(idText, employees, events)
+                success = LogEvent(idText, events)
                 if (success) {
                     var name = ""
                     for (employee: Employee in employees) {
@@ -86,21 +87,15 @@ val ClockPage = FC<Props> { props ->
         className = ClassName("container")
     }
 }
-suspend fun LogEvent(id: String, employees: List<Employee>, events: List<TimeEvent>): Boolean {
-    var found: Boolean = false
-    for (employee: Employee in employees) {
-        if (employee.user_id == id) {
-            found = true
-            break
-        }
-    }
-    if (!found) {
+suspend fun LogEvent(id: String, events: List<TimeEvent>): Boolean {
+    val employee: Employee? = getEmployee(id)
+    if (employee !is Employee) {
         return false
     }
     var eventType = ENTER
 
     for (lastEvent: TimeEvent in events.reversed()) {
-        val lastId = lastEvent.evt_id
+        val lastId = lastEvent.eventEmployee.user_id
         if (id == lastId) {
             if (lastEvent.eventType == ENTER) {
                 eventType = EXIT
@@ -111,7 +106,7 @@ suspend fun LogEvent(id: String, employees: List<Employee>, events: List<TimeEve
 
     val dateTime = Clock.System.now().toString()
 
-    postEvent(TimeEvent(id, eventType, dateTime))
+    postEvent(TimeEvent(employee, eventType, dateTime))
 
     return true
 }
