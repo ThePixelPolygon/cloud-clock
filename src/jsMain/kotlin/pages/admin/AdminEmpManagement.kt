@@ -2,6 +2,7 @@ package pages.admin
 
 import Employee
 import csstype.ClassName
+import deleteEmployee
 import getEmployee
 import getEmployees
 import kotlinx.browser.document
@@ -62,6 +63,11 @@ private class EditForm : Component<Props, State> {
         }
     }
 
+    private suspend fun delete(idToDelete: String) {
+        document.getElementById("FormRenderer")!!.innerHTML = ""
+        deleteEmployee(idToDelete)
+    }
+
     override fun render(): ReactNode? {
         return FC<Props> {
             val (initName, dynamicName) = useState(empName)
@@ -83,6 +89,16 @@ private class EditForm : Component<Props, State> {
                     }
                 }
             }
+
+            val deleteHandler: MouseEventHandler<HTMLInputElement> = {
+                val willDelete: Boolean = js("confirm(\"Are you sure you would like to delete this user?\")")
+                if (willDelete) {
+                    scope.launch {
+                        delete(empId)
+                    }
+                }
+            }
+
             h1 {
                 id = "nameHeading"
                 if (empName != "") {
@@ -130,6 +146,7 @@ private class EditForm : Component<Props, State> {
                             type = InputType.button
                             className = ClassName("btn btn-outline-danger")
                             value = "Delete"
+                            onClick = deleteHandler
                         }
                     }
                     input {

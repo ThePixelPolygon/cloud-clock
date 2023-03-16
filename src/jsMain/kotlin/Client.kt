@@ -40,6 +40,10 @@ fun App(): FC<Props> {
                         path = "hours"
                         element = pages.admin.regularHoursList.create()
                     }
+                    Route {
+                        path = "export"
+                        element = pages.admin.exportForm.create()
+                    }
                 }
                 Route {
                     path = "*"

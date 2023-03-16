@@ -25,6 +25,9 @@ suspend fun getEmployee(id: String): Employee? {
     return jsonClient.get(Employee.path + "/$id").body()
 }
 
+suspend fun deleteEmployee(id: String) {
+    jsonClient.delete(Employee.path + "/$id")
+}
 
 suspend fun postEvent(timeEvent: TimeEvent) {
     jsonClient.post(TimeEvent.path) {
