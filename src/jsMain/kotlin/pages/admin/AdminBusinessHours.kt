@@ -30,6 +30,9 @@ val regularHourComponent = FC<BusinessDayProps> { props ->
             input {
                 id = day
                 type = InputType.time
+                onChange = {
+                    println(it.target.value)
+                }
             }
             label {
                 htmlFor = "$day-close"
