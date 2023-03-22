@@ -1,3 +1,112 @@
 .page-header {
-    color: #1d36ff;
+    color: #3AA5F8;
+}
+.col {
+    background-color: white;
+    padding: 20px;
+}
+.col-1 {
+    background-color: white;
+    padding: 20px;
+}
+
+.col-2 {
+    background-color: rgb(185, 23, 23);
+    padding: 20px;
+}
+
+p {
+    color: white;
+    font-size: 28px;
+    font-family: Gotham, Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    font-size: 20px;
+    font-family: Gotham, Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 120px;
+    font-family: Gotham, Arial, Helvetica, sans-serif;
+    font-weight: 900
+}
+
+.container {
+    padding: 3em;
+}
+
+body {
+    background: rgb(50,52,55);
+    background: linear-gradient(180deg, rgba(50,52,55,1) 10%, rgba(16,16,16,1) 80%);
+}
+
+.logo {
+    font-size: 20px;
+    font-family: Gotham, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.footer-text {
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.flex-md-column {
+    background-color: white;
+    padding: 20px;
+}
+
+.flex-column {
+    background-color: black;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+#footer-column {
+    background-color: black;
+}
+.justify-content-center {
+    margin-right: 20px;
+    padding: 20px;
+}
+#login {
+    background-color: rgb(50,52,55);
+    color: white;
+    margin-top: -10px;
+    border-radius:2.3rem!important;
+}
+
+#learn-more-btn {
+    background-color: #3AA5F8;
+    color: white;
+    padding: 10px;
+    margin-top: 1.6em;
+    border-radius:2.3rem!important;
+
+}
+
+#learn-more-btn:hover {
+    background-color: #3AA5F8;
+    color: black;
+}
+
+.img-fluid {
+    margin-top: -10px;
+}
+
+#logo {
+    margin-top: -2.8px;
+}
+
+#learn-more {
+    margin: 0px 3px 0px 3px;
+}
+
+#login-text {
+    margin: 3px 3px 3px 3px;
 }
