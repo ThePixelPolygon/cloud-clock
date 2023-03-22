@@ -34,7 +34,12 @@ val homePage = FC<Props> {
                             "Export time sheets for selected employees.")
                 }
                 p {
-                    +("Choose CloudClock for the ultimate time tracking and employee management solution for your" +
+                    +("Choose ")
+                    b {
+                        className = ClassName("page-header")
+                        +("CloudClock")
+                    }
+                    +("for the ultimate time tracking and employee management solution for your" +
                             "business.")
                 }
             }
