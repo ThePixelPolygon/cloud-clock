@@ -41,7 +41,10 @@ val logTable = FC<Props>{ props ->
                         +("Event")
                     }
                     th {
-                        +("Timestamp")
+                        +("Date")
+                    }
+                    th {
+                        +("Time")
                     }
                 }
             }
@@ -62,7 +65,10 @@ val logTable = FC<Props>{ props ->
                             })
                         }
                         td {
-                            +(event.dateTime.toString())
+                            +(event.date.toString())
+                        }
+                        td {
+                            +(event.time.toString())
                         }
                     }
                 }

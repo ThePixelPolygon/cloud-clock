@@ -10,6 +10,8 @@ import getEvents
 import kotlinx.browser.document
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.w3c.dom.HTMLFormElement
 import org.w3c.dom.HTMLInputElement
 import postEvent
@@ -104,9 +106,9 @@ suspend fun LogEvent(id: String, events: List<TimeEvent>): Boolean {
         }
     }
 
-    val dateTime = Clock.System.now().toString()
+    val dateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
-    postEvent(TimeEvent(employee, eventType, dateTime))
+    postEvent(TimeEvent(employee, eventType, dateTime.date, dateTime.time))
 
     return true
 }

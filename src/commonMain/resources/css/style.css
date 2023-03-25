@@ -4,20 +4,25 @@
 #white-space {
     background-color: white;
     padding: 20px;
+    font-size: 120px;
+    font-weight: 900
 }
 
 p {
-    color: white;
-    font-size: 28px;
     font-family: Gotham, Arial, Helvetica, sans-serif;
 }
 
-h3 {
+.display-text-light {
+    color: white !important;
+    font-size: 28px;
+}
+
+.display-h3 {
     font-size: 20px;
     font-family: Gotham, Arial, Helvetica, sans-serif;
 }
 
-h1 {
+.display-h1 {
     font-size: 120px;
     font-family: Gotham, Arial, Helvetica, sans-serif;
     font-weight: 900
@@ -52,7 +57,7 @@ a {
     padding: 20px;
 }
 
-.flex-column {
+.the-column {
     background-color: black;
     padding: 15px;
     margin-top: 10px;

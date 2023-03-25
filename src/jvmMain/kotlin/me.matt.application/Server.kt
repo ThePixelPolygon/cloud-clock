@@ -87,7 +87,8 @@ val connectionString: ConnectionString? = System.getenv("MONGODB_URI")?.let {
 
 val client = if (connectionString != null) KMongo.createClient(connectionString).coroutine
     else KMongo.createClient().coroutine
-val database = client.getDatabase("cloudclock")
+
+val database = client.getDatabase("cloudclock-debug")
 val employees = database.getCollection<Employee>("employee")
 
 val events = database.getCollection<TimeEvent>("events")

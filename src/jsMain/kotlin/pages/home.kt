@@ -75,10 +75,11 @@ val homePage = FC<Props> {
                 div {
                     className = ClassName("col-12 col-lg-6")
                     h1 {
-                        className = ClassName("page-header")
+                        className = ClassName("page-header display-h1")
                         +("CloudClock")
                     }
                     p {
+                        className = ClassName("display-text-light")
                         +("Welcome to ")
                         b {
                             className = ClassName("page-header")
@@ -87,11 +88,13 @@ val homePage = FC<Props> {
                         +(", the web-based application for time tracking and employee management!")
                     }
                     p {
+                        className = ClassName("display-text-light")
                         +("Easily track employee hours. Manage employees from the employee list." +
                                 " Set business hours and cross-check them with employee hours. " +
                                 "Export time sheets for selected employees.")
                     }
                     p {
+                        className = ClassName("display-text-light")
                         +("Choose ")
                         b {
                             className = ClassName("page-header")
