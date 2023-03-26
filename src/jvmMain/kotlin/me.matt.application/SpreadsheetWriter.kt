@@ -93,5 +93,6 @@ class SpreadsheetWriter {
             writeTime(events, workbook, employee)
         }
         workbook.write(outputStream)
+        outputStream.close()
     }
 }

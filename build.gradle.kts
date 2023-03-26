@@ -60,11 +60,16 @@ kotlin {
                 implementation("io.ktor:ktor-server-compression:$ktorVersion")
                 implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
                 implementation("io.ktor:ktor-server-netty:$ktorVersion")
+                implementation("io.ktor:ktor-server-partial-content:$ktorVersion")
+                implementation("io.ktor:ktor-server-auto-head-response:$ktorVersion")
                 implementation("ch.qos.logback:logback-classic:$logbackVersion")
                 implementation("org.litote.kmongo:kmongo-coroutine-serialization:$kmongoVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
                 implementation("org.apache.poi:poi:5.2.3")
                 implementation("org.apache.poi:poi-ooxml:5.2.3")
+                implementation("org.apache.logging.log4j:log4j-api:2.20.0")
+                implementation("org.apache.logging.log4j:log4j-core:2.20.0")
+
 
             }
         }

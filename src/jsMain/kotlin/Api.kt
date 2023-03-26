@@ -6,6 +6,7 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import org.w3c.files.Blob
 
 val jsonClient = HttpClient {
     install(ContentNegotiation) {
@@ -48,4 +49,12 @@ suspend fun updateEmployee(oldEmployee: Employee, newEmployee: Employee) {
         contentType(ContentType.Application.Json)
         setBody(listOf(oldEmployee, newEmployee))
     }
+}
+
+suspend fun getSpreadsheet(exportParams: ExportParams): Blob {
+    val request = jsonClient.post(ExportParams.path) {
+        contentType(ContentType.Application.Json)
+        setBody(exportParams)
+    }
+    return request.body()
 }

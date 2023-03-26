@@ -2,6 +2,7 @@ package me.matt.application
 
 import BusinessDay
 import Employee
+import ExportParams
 import TimeEvent
 import com.mongodb.ConnectionString
 import io.ktor.http.*
@@ -11,14 +12,19 @@ import io.ktor.server.engine.*
 import io.ktor.server.html.*
 import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.autohead.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.cors.routing.*
+import io.ktor.server.plugins.partialcontent.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.html.*
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 fun HTML.index() {
     head {
@@ -100,6 +106,8 @@ fun main() {
 }
 
 fun Application.myApplicationModule() {
+    install(PartialContent)
+    install(AutoHeadResponse)
     install(ContentNegotiation) {
         json()
     }
@@ -150,6 +158,40 @@ fun Application.myApplicationModule() {
                 val emp = call.receive<List<Employee>>()
                 employees.replaceOne("{ user_id: '${emp[0].user_id}' }", emp[1])
             }
+        }
+        route("/exportsheet") {
+            post {
+                val requestParams = call.receive<ExportParams>()
+                val eventList = events.find().toList()
+
+                // TODO: Implement user-selectable filters
+                val empList = employees.find().toList()
+                try {
+                    val file = File("sheet.xlsx")
+                    val fileWriter = FileOutputStream(file)
+
+                    val spreadsheetWriter = SpreadsheetWriter()
+                    spreadsheetWriter.writeSpreadsheet(fileWriter, empList, eventList)
+
+                    call.response.header(
+                        HttpHeaders.ContentDisposition,
+                        ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName,
+                            "Timesheet.xlsx").toString()
+                    )
+                    call.respondFile(file)
+                } catch (e: IOException) {
+                    call.respond(HttpStatusCode.InternalServerError)
+                }
+            }
+        }
+        get("/sheet") {
+            val file = File("sheet.xlsx")
+            call.response.header(
+                HttpHeaders.ContentDisposition,
+                ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName,
+                    "Timesheet.xlsx").toString()
+            )
+            call.respondFile(file)
         }
         route(TimeEvent.path) {
             get {
