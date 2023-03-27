@@ -7,6 +7,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import org.w3c.files.Blob
+import org.w3c.files.File
 
 val jsonClient = HttpClient {
     install(ContentNegotiation) {
@@ -51,7 +52,7 @@ suspend fun updateEmployee(oldEmployee: Employee, newEmployee: Employee) {
     }
 }
 
-suspend fun getSpreadsheet(exportParams: ExportParams): Blob {
+suspend fun getSpreadsheet(exportParams: ExportParams): String {
     val request = jsonClient.post(ExportParams.path) {
         contentType(ContentType.Application.Json)
         setBody(exportParams)

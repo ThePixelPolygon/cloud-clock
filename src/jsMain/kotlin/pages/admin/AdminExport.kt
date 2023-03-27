@@ -9,9 +9,8 @@ import kotlinx.browser.document
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.datetime.toLocalDate
-import org.w3c.dom.HTMLFormElement
-import org.w3c.dom.HTMLInputElement
-import org.w3c.dom.HTMLLinkElement
+import org.w3c.dom.*
+import org.w3c.dom.url.URL
 import org.w3c.dom.url.URL.Companion.createObjectURL
 import org.w3c.files.Blob
 import react.FC
@@ -25,6 +24,7 @@ import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.label
 import react.useState
+import kotlin.reflect.typeOf
 
 val scope = MainScope()
 
@@ -46,15 +46,12 @@ val exportForm = FC<Props> {
         val exportParams = ExportParams(employeeList, startDate, endDate)
         scope.launch {
             employeeList = getEmployees()
-            val blob: Blob = getSpreadsheet(exportParams)
-            val url = createObjectURL(blob)
-            val linkElement = document.createElement("a") as HTMLLinkElement
-            linkElement.href = "/sheet"
-            linkElement.setAttribute("download", "Timesheet.xlsx")
+            val spreadsheet = getSpreadsheet(exportParams)
+            val linkElement = document.createElement("a") as HTMLElement
+            linkElement.setAttribute("href", "/sheet")
             document.body!!.appendChild(linkElement)
             linkElement.click()
             document.body!!.removeChild(linkElement)
-
         }
     }
     div {
@@ -75,6 +72,7 @@ val exportForm = FC<Props> {
                 id = "from"
                 type = InputType.date
                 onChange = startChangeHandler
+                required = true
             }
             label {
                 className = ClassName("form-label")
@@ -86,9 +84,12 @@ val exportForm = FC<Props> {
                 id = "to"
                 type = InputType.date
                 onChange = endChangeHandler
+                required = true
             }
             input {
                 className = ClassName("btn btn-primary")
+                id = "submitbtn"
+                value = "Export"
                 type = InputType.submit
             }
         }

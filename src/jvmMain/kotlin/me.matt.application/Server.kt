@@ -172,13 +172,13 @@ fun Application.myApplicationModule() {
 
                     val spreadsheetWriter = SpreadsheetWriter()
                     spreadsheetWriter.writeSpreadsheet(fileWriter, empList, eventList)
-
-                    call.response.header(
-                        HttpHeaders.ContentDisposition,
-                        ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName,
-                            "Timesheet.xlsx").toString()
-                    )
-                    call.respondFile(file)
+                    call.respondText("/sheet")
+//                    call.response.header(
+//                        HttpHeaders.ContentDisposition,
+//                        ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName,
+//                            "Timesheet.xlsx").toString()
+//                    )
+//                    call.respondFile(file)
                 } catch (e: IOException) {
                     call.respond(HttpStatusCode.InternalServerError)
                 }
