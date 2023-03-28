@@ -3,11 +3,8 @@ package pages.admin
 import BusinessDay
 import csstype.ClassName
 import getHours
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
-import kotlinx.datetime.LocalTime
 import org.w3c.dom.HTMLFormElement
 import org.w3c.dom.HTMLInputElement
 import react.FC
@@ -85,7 +82,7 @@ val regularHourComponent = FC<BusinessDayProps> { props ->
 }
 
 val regularHoursList = FC<Props> {
-    var regularHours: List<BusinessDay> = listOf()
+    var regularHours by useState(emptyList<BusinessDay>())
     mainScope.launch {
         regularHours = getHours()
     }
