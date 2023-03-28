@@ -32,6 +32,8 @@ class SpreadsheetWriter {
         return dateList
     }
     private fun writeTime(events: List<TimeEvent>, workbook: Workbook, employee: Employee) {
+        val employeeEvents = events.toMutableList()
+        employeeEvents.removeIf { it.eventEmployee.user_id != employee.user_id }
         val sheet = workbook.createSheet()
         val dateStyle = workbook.createCellStyle()
         dateStyle.dataFormat = workbook.creationHelper.createDataFormat().getFormat("m/d/yy")
@@ -48,7 +50,7 @@ class SpreadsheetWriter {
         row = sheet.createRow(1)
 
         // Remap all events as maps by date
-        val eventMap = eventListToMap(events)
+        val eventMap = eventListToMap(employeeEvents)
         val listLengths: MutableList<Int> = mutableListOf()
         for (date in eventMap.keys) {
             listLengths.add(eventMap[date]!!.size)
@@ -59,7 +61,7 @@ class SpreadsheetWriter {
         row.createCell(0).setCellValue("Date")
 
         // Time headers
-        for (col in 1..maxCols + 1) {
+        for (col in 1..maxCols + 1 step 2) {
             row.createCell(col).setCellValue("IN")
             row.createCell(col + 1).setCellValue("OUT")
         }
@@ -70,8 +72,8 @@ class SpreadsheetWriter {
             row = sheet.createRow(counter)
             var hCounter = 1
             val dateCell: Cell = row.createCell(0)
-            dateCell.setCellValue(date.toJavaLocalDate())
-            dateCell.cellStyle = dateStyle
+            dateCell.setCellValue(date.toString())
+            // dateCell.cellStyle = dateStyle
 
             for (time in timeList!!) {
                 val timeCell = row.createCell(hCounter)

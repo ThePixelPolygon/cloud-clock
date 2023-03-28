@@ -20,6 +20,7 @@ import react.dom.html.ReactHTML.form
 import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.label
+import react.dom.html.ReactHTML.p
 import react.useState
 
 val mainScope = MainScope()
@@ -45,12 +46,19 @@ val regularHourComponent = FC<BusinessDayProps> { props ->
     var businessHour = BusinessDay(props.day, isClosed, opTime.toLocalTime(), clTime.toLocalTime())
     val openChangeHandler: ChangeEventHandler<HTMLInputElement> = {
         opTimeChange(it.target.value)
+        businessHour.openTime = opTime.toLocalTime()
+        writeChange(businessHour)
     }
     val closeChangeHandler: ChangeEventHandler<HTMLInputElement> = {
         clTimeChange(it.target.value)
+        businessHour.closeTime = clTime.toLocalTime()
+        writeChange(businessHour)
     }
     val closedHandler: ChangeEventHandler<HTMLInputElement> = {
         isClosedChange.invoke(!isClosed)
+        businessHour.closed = !isClosed
+        println(!isClosed)
+        writeChange(businessHour)
     }
     val day = deserializeDay(props.day)
         label {
@@ -65,6 +73,7 @@ val regularHourComponent = FC<BusinessDayProps> { props ->
                 type = InputType.time
                 value = opTime
                 onChange = openChangeHandler
+                required = true
             }
             label {
                 htmlFor = "$day-close"
@@ -75,6 +84,7 @@ val regularHourComponent = FC<BusinessDayProps> { props ->
                 id = "$day-close"
                 onChange = closeChangeHandler
                 value = clTime
+                required = true
             }
             div {
                 className = ClassName("form-check form-swtich")
@@ -101,6 +111,12 @@ val regularHoursList = FC<Props> {
     }
     val submitHandler: FormEventHandler<HTMLFormElement> = {
         it.preventDefault()
+    }
+    h1 {
+        +("Business Hours")
+    }
+    p {
+        +("Changes are saved automatically.")
     }
     form {
         onSubmit = submitHandler

@@ -42,15 +42,23 @@ val exportForm = FC<Props> {
         val endDate = endDate.toLocalDate()
         var employeeList: List<Employee> = listOf()
         val exportParams = ExportParams(employeeList, startDate, endDate)
+        val button = document.getElementById("submitbtn") as HTMLInputElement
+
         scope.launch {
+            button.disabled = true
+            button.value = "Please wait..."
             employeeList = getEmployees()
-            val spreadsheet = getSpreadsheet(exportParams)
+            getSpreadsheet(exportParams)
             val linkElement = document.createElement("a") as HTMLElement
+
             linkElement.setAttribute("href", "/sheet")
             document.body!!.appendChild(linkElement)
             linkElement.click()
             document.body!!.removeChild(linkElement)
+            button.disabled = false
+            button.value = "Export"
         }
+
     }
     div {
         className = ClassName("container")

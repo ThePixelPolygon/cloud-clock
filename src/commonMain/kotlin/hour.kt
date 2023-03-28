@@ -2,7 +2,7 @@ import kotlinx.datetime.LocalTime
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BusinessDay(val day: Int, val closed: Boolean, val openTime: LocalTime, val closeTime: LocalTime) {
+data class BusinessDay(val day: Int, var closed: Boolean, var openTime: LocalTime, var closeTime: LocalTime) {
     companion object {
         const val path = "/businesshours"
         val days = mapOf(
