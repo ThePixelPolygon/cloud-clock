@@ -22,6 +22,8 @@ import io.ktor.server.routing.*
 import kotlinx.html.*
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
+import org.litote.kmongo.replaceUpsert
+import org.litote.kmongo.upsert
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -98,6 +100,7 @@ val database = client.getDatabase("cloudclock-debug")
 val employees = database.getCollection<Employee>("employee")
 
 val events = database.getCollection<TimeEvent>("events")
+val businessHours = database.getCollection<BusinessDay>("reghrs")
 
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8080
@@ -204,11 +207,13 @@ fun Application.myApplicationModule() {
             }
         }
         route(BusinessDay.path) {
-            get {
-
+            put {
+                val day = call.receive<BusinessDay>()
+                businessHours.replaceOne("{\"day\": ${day.day}}", day, replaceUpsert())
+                call.respond(HttpStatusCode.OK)
             }
-            get("/{day}") {
-
+            get {
+                call.respond(businessHours.find().toList())
             }
         }
 //        get("/") {

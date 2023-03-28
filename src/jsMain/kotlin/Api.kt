@@ -59,3 +59,7 @@ suspend fun getSpreadsheet(exportParams: ExportParams): String {
     }
     return request.body()
 }
+
+suspend fun getHours(): List<BusinessDay> {
+    return jsonClient.get(BusinessDay.path).body()
+}
