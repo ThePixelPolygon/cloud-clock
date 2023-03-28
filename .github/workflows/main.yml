@@ -18,6 +18,6 @@ jobs:
           # Artifact name
           name: site
           # Destination path
-          path: build/distributions/*.tar
+          path: ./build/distributions/*.tar
         
     
