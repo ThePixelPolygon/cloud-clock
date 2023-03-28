@@ -71,6 +71,7 @@ val regularHourComponent = FC<BusinessDayProps> { props ->
                     type = InputType.checkbox
                     id = "$day-is-closed"
                     checked = isClosed
+                    onChange = closedHandler
                 }
                 label {
                     className = ClassName("form-check-label")
@@ -94,8 +95,8 @@ val regularHoursList = FC<Props> {
         for (hour in regularHours) {
             regularHourComponent {
                 day = hour.day
-                openTime = "00:00"
-                closeTime = "23:59"
+                openTime = hour.toString()
+                closeTime = hour.toString()
                 closed = hour.closed
             }
         }
