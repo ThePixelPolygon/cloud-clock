@@ -6,8 +6,6 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import org.w3c.files.Blob
-import org.w3c.files.File
 
 val jsonClient = HttpClient {
     install(ContentNegotiation) {
@@ -62,4 +60,11 @@ suspend fun getSpreadsheet(exportParams: ExportParams): String {
 
 suspend fun getHours(): List<BusinessDay> {
     return jsonClient.get(BusinessDay.path).body()
+}
+
+suspend fun putHour(businessDay: BusinessDay) {
+    jsonClient.put(BusinessDay.path) {
+        contentType(ContentType.Application.Json)
+        setBody(businessDay)
+    }
 }

@@ -9,10 +9,9 @@ import kotlinx.browser.document
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.datetime.toLocalDate
-import org.w3c.dom.*
-import org.w3c.dom.url.URL
-import org.w3c.dom.url.URL.Companion.createObjectURL
-import org.w3c.files.Blob
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLFormElement
+import org.w3c.dom.HTMLInputElement
 import react.FC
 import react.Props
 import react.dom.events.ChangeEventHandler
@@ -24,7 +23,6 @@ import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.label
 import react.useState
-import kotlin.reflect.typeOf
 
 val scope = MainScope()
 

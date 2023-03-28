@@ -5,8 +5,10 @@ import csstype.ClassName
 import getHours
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import kotlinx.datetime.toLocalTime
 import org.w3c.dom.HTMLFormElement
 import org.w3c.dom.HTMLInputElement
+import putHour
 import react.FC
 import react.Props
 import react.StateSetter
@@ -15,6 +17,7 @@ import react.dom.events.FormEventHandler
 import react.dom.html.InputType
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.form
+import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.label
 import react.useState
@@ -27,10 +30,19 @@ external interface BusinessDayProps : Props {
     var closed: Boolean
 }
 
+fun writeChange(businessDay: BusinessDay) {
+    println("Saving...")
+    mainScope.launch {
+        putHour(businessDay)
+        println("Done.")
+    }
+}
+
 val regularHourComponent = FC<BusinessDayProps> { props ->
     var (opTime, opTimeChange) = useState(props.openTime)
     var (clTime, clTimeChange) = useState(props.closeTime)
     val (isClosed: Boolean, isClosedChange: StateSetter<Boolean>) = useState(props.closed)
+    var businessHour = BusinessDay(props.day, isClosed, opTime.toLocalTime(), clTime.toLocalTime())
     val openChangeHandler: ChangeEventHandler<HTMLInputElement> = {
         opTimeChange(it.target.value)
     }
@@ -95,8 +107,8 @@ val regularHoursList = FC<Props> {
         for (hour in regularHours) {
             regularHourComponent {
                 day = hour.day
-                openTime = hour.toString()
-                closeTime = hour.toString()
+                openTime = hour.openTime.toString()
+                closeTime = hour.closeTime.toString()
                 closed = hour.closed
             }
         }
