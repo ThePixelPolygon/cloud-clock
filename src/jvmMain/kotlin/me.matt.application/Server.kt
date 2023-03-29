@@ -127,10 +127,12 @@ fun Application.myApplicationModule() {
         json()
     }
     install(CORS) {
+        allowHeader(HttpHeaders.ContentType)
         allowMethod(HttpMethod.Get)
         allowMethod(HttpMethod.Post)
         allowMethod(HttpMethod.Delete)
         allowMethod(HttpMethod.Put)
+        anyHost()
     }
     routing {
         route("/") {
