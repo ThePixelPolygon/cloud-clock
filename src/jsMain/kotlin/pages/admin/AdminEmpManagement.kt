@@ -162,8 +162,7 @@ private class EditForm : Component<Props, State> {
 }
 
 fun jsDialog(): Boolean {
-    return js("confirm('Are you sure you want to delete this user?\\n\\nThis option cannot be undone.\\n" +
-            "All related events will be deleted.')")
+    return js("confirm('Are you sure you want to delete this user?\\n\\nThis option cannot be undone.')") as Boolean
 }
 
 val empListComponent = FC<EmployeeProps> {props ->
@@ -230,7 +229,7 @@ val employeeManagement = FC<Props> {
             div {
                 className = ClassName("col-md-4")
                 div {
-                    ClassName("d-flex justify-content-evenly")
+                    className = ClassName("d-flex flex-row justify-content-between")
                     h2 {
                         +("Employees")
                     }
