@@ -80,7 +80,6 @@ fun HTML.index() {
 
         }
         div {
-            classes = setOf("mt-5")
             id = "root"
         }
         script(src = "/static/js/bootstrap.bundle.js") {}

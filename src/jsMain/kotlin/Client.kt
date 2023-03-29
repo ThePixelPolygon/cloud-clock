@@ -27,7 +27,7 @@ fun App(): FC<Props> {
                 }
                 Route {
                     path = "clock"
-                    element = pages.clock.ClockPage.create()
+                    element = pages.clock.Clock.create()
                 }
                 Route {
                     path = "admin"

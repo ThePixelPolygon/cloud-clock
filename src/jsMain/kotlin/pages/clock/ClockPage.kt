@@ -20,6 +20,7 @@ import react.Props
 import react.dom.events.ChangeEventHandler
 import react.dom.events.FormEventHandler
 import react.dom.html.InputType
+import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.form
 import react.dom.html.ReactHTML.input
@@ -64,7 +65,7 @@ val ClockPage = FC<Props> { props ->
     }
 
     form {
-        className = ClassName("container")
+        className = ClassName("mx-3 vstack gap-3")
         onSubmit = submitHandler
         label {
             htmlFor = "empid"
@@ -78,17 +79,41 @@ val ClockPage = FC<Props> { props ->
             type = InputType.text
             value = idText
         }
-        input {
-            className = ClassName("btn btn-primary")
-            type = InputType.submit
-            value = "Submit"
+        div {
+            className = ClassName("d-flex flex-row-reverse")
+            input {
+
+                className = ClassName("btn btn-primary")
+                type = InputType.submit
+                value = "Submit"
+            }
         }
+
     }
     div {
         id = "message"
         className = ClassName("container")
     }
 }
+
+val Clock = FC<Props> {
+    div {
+        className = ClassName("background")
+        div {
+            className = ClassName("container flex-row my-5")
+            div {
+                id = "login-box"
+                ReactHTML.h1 {
+                    className = ClassName("text-center")
+                    id = "login-field-text"
+                    +("Login")
+                }
+                ClockPage { }
+            }
+        }
+    }
+}
+
 suspend fun LogEvent(id: String, events: List<TimeEvent>): Boolean {
     val employee: Employee? = getEmployee(id)
     if (employee !is Employee) {

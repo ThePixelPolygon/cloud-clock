@@ -3,28 +3,31 @@
 }
 #white-space {
     background-color: white;
-    padding: 20px;
-    font-size: 120px;
-    font-weight: 900
+    padding: 1.25em;
 }
 
-p {
+.transparent-white-space {
+    background-color: transparent;
+    padding: 1.255em
+}
+
+body {
     font-family: Gotham, Arial, Helvetica, sans-serif;
 }
 
 .display-text-light {
     color: white !important;
-    font-size: 28px;
+    font-size: 1.75em;
 }
 
-.display-h3 {
-    font-size: 20px;
-    font-family: Gotham, Arial, Helvetica, sans-serif;
+h3 {
+    font-size: 1.25em;
+    font-family: Gotham;
 }
 
-.display-h1 {
-    font-size: 120px;
-    font-family: Gotham, Arial, Helvetica, sans-serif;
+h1 {
+    font-size: 7.5em;
+    font-family: Gotham;
     font-weight: 900
 }
 
@@ -35,16 +38,18 @@ p {
 .background {
     background: rgb(50,52,55);
     background: linear-gradient(180deg, rgba(50,52,55,1) 10%, rgba(16,16,16,1) 80%);
+    background-repeat: no-repeat;
 }
 
 .logo {
-    font-size: 20px;
-    font-family: Gotham, Arial, Helvetica, sans-serif;
+    font-size: 1.25em;
+    font-family: Gotham;
     font-weight: bold;
 }
 
 .footer-text {
-    font-size: 12px;
+    font-size: 0.75em;
+    color: white;
 }
 
 a {
@@ -54,33 +59,37 @@ a {
 
 .top-header {
     background-color: white;
-    padding: 20px;
+    padding: 1.25em;
 }
 
-.the-column {
-    background-color: black;
-    padding: 15px;
-    margin-top: 10px;
+.footer-text {
+    padding: 0.9375em;
+    margin-top: 1.25em;
 }
 
 #footer-column {
     background-color: black;
 }
 #social-media {
-    margin-right: 20px;
-    padding: 20px;
+    margin-right: 1.25em;
+    padding: 1.25em;
 }
 #login {
     background-color: rgb(50,52,55);
     color: white;
-    margin-top: -10px;
+    margin-top: -0.625em;
     border-radius:2.3rem!important
+}
+
+#login:hover {
+    background-color: rgb(50,52,55);
+    color: black;
 }
 
 #learn-more-btn {
     background-color: #3AA5F8;
     color: white;
-    padding: 10px;
+    padding: 0.625em;
     margin-top: 1.6em;
     border-radius:2.3rem!important
 
@@ -92,11 +101,11 @@ a {
 }
 
 #logo-img {
-    margin-top: -10px;
+    margin-top: -0.625em;
 }
 
 #logo {
-    margin-top: -2.8px;
+    margin-top: -0.175em;
 }
 
 #learn-more {
@@ -105,4 +114,47 @@ a {
 
 #login-text {
     margin: 3px 3px 3px 3px;
+}
+
+#login-box {
+    background-color: white;
+    padding: 3em;
+    margin-top: 4em;
+    margin-bottom: 4em;
+    color: black;
+    /* border: 3px solid black; */
+    border-radius:2.3rem!important
+}
+
+.field {
+    background-color: #E8F0FE;
+    border: none;
+    margin-bottom: 1em;
+    height: 2em;
+    width: 17em;
+}
+
+#login-field {
+    pad: 1.5em;
+
+}
+
+#login-field-text {
+    color: black;
+    font-size: 3em;
+}
+
+#field-text {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#continue-button {
+    background-color: rgb(50,52,55);
+    color: white;
+    margin-top: -0.625em;
+    border: 1px solid black;
+    border-radius:2.3rem!important;
+    font-family: Gotham;
+    padding: 0.5em;
 }
