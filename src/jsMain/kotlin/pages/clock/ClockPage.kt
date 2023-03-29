@@ -28,7 +28,6 @@ import react.dom.html.ReactHTML.label
 import react.useState
 import scope
 
-
 val ClockPage = FC<Props> { props ->
     val (idText, otherText) = useState("")
     var employees by useState(emptyList<Employee>())
