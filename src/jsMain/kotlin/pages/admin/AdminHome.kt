@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import react.FC
 import react.Props
 import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.table
 import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
@@ -27,6 +28,9 @@ val logTable = FC<Props>{ props ->
         events = getEvents()
     }
     div {
+        h1 {
+            +("Event Log")
+        }
         className = ClassName("container")
         table {
             thead {

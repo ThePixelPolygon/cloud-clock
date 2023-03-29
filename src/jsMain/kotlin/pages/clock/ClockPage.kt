@@ -81,10 +81,10 @@ val ClockPage = FC<Props> { props ->
         div {
             className = ClassName("d-flex flex-row-reverse")
             input {
-
                 className = ClassName("btn btn-primary")
+                id = "continue-button"
                 type = InputType.submit
-                value = "Submit"
+                value = "Login"
             }
         }
 

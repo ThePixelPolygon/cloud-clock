@@ -75,7 +75,7 @@ val homePage = FC<Props> {
                 div {
                     className = ClassName("col-12 col-lg-6")
                     h1 {
-                        className = ClassName("page-header display-h1")
+                        className = ClassName("page-header title-heading")
                         +("CloudClock")
                     }
                     p {

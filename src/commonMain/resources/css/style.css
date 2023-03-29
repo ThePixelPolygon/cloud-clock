@@ -12,7 +12,7 @@
 }
 
 body {
-    font-family: Gotham, Arial, Helvetica, sans-serif;
+    font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
 }
 
 .display-text-light {
@@ -22,13 +22,23 @@ body {
 
 h3 {
     font-size: 1.25em;
-    font-family: Gotham;
+    font-family: 'Red Hat Display';
+}
+
+.title-heading {
+    font-size: 7.5em
 }
 
 h1 {
-    font-size: 7.5em;
-    font-family: Gotham;
-    font-weight: 900
+    font-size: 3em;
+    font-family: 'Red Hat Display';
+    font-weight: 600
+}
+
+h2 {
+    font-size: 2em;
+    font-family: 'Red Hat Display';
+    font-weight: 500;
 }
 
 .container {
@@ -43,7 +53,7 @@ h1 {
 
 .logo {
     font-size: 1.25em;
-    font-family: Gotham;
+    font-family: 'Red Hat Display';
     font-weight: bold;
 }
 
@@ -155,6 +165,10 @@ a {
     margin-top: -0.625em;
     border: 1px solid black;
     border-radius:2.3rem!important;
-    font-family: Gotham;
+    padding: 0.5em;
+}
+
+.btn {
+    border-radius: 2.3rem;
     padding: 0.5em;
 }

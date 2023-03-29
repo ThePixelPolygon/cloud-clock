@@ -44,9 +44,10 @@ fun HTML.index() {
             attributes["crossorigin"] = "true"
         }
         link {
-            href = "https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@600&display=swap"
+            href = "https://fonts.googleapis.com/css2?family=Libre+Franklin&family=Red+Hat+Display:wght@600&display=swap"
             rel = "stylesheet"
         }
+
     }
     body {
         nav {
