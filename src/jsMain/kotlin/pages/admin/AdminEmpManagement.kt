@@ -7,10 +7,9 @@ import getEmployee
 import getEmployees
 import kotlinx.browser.document
 import kotlinx.coroutines.launch
-import org.w3c.dom.HTMLAnchorElement
-import org.w3c.dom.HTMLButtonElement
-import org.w3c.dom.HTMLFormElement
-import org.w3c.dom.HTMLInputElement
+import kotlinx.dom.addClass
+import kotlinx.dom.removeClass
+import org.w3c.dom.*
 import postEmployee
 import react.*
 import react.dom.client.createRoot
@@ -69,6 +68,13 @@ private class EditForm : Component<Props, State> {
     }
 
     override fun render(): ReactNode? {
+        val itemList = document.getElementsByClassName("list-group-item").asList()
+        itemList.forEach {
+            it.removeClass("active")
+            if (it.id == "emp${empId}") {
+                it.addClass("active")
+            }
+        }
         return FC<Props> {
             val (initName, dynamicName) = useState(empName)
             val (initID, dynamicID) = useState(empId)
