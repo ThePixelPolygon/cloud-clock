@@ -169,13 +169,10 @@ fun jsDialog(): Boolean {
 val empListComponent = FC<EmployeeProps> {props ->
 
     val handler: MouseEventHandler<HTMLAnchorElement> = {
-        it.preventDefault()
-
         val formRoot = document.getElementById("FormRenderer")!!.let { createRoot(it) }
         val component = EditForm(props.empId, props.empName)
 //        formRoot.unmount()
         formRoot.render(component.render())
-
     }
 
     a {
@@ -196,6 +193,7 @@ val empListComponent = FC<EmployeeProps> {props ->
             }
 
         }
+        href = "#FormRenderer"
         onClick = handler
     }
 }

@@ -49,3 +49,22 @@ suspend fun updateEmployee(oldEmployee: Employee, newEmployee: Employee) {
         setBody(listOf(oldEmployee, newEmployee))
     }
 }
+
+suspend fun getSpreadsheet(exportParams: ExportParams): String {
+    val request = jsonClient.post(ExportParams.path) {
+        contentType(ContentType.Application.Json)
+        setBody(exportParams)
+    }
+    return request.body()
+}
+
+suspend fun getHours(): List<BusinessDay> {
+    return jsonClient.get(BusinessDay.path).body()
+}
+
+suspend fun putHour(businessDay: BusinessDay) {
+    jsonClient.put(BusinessDay.path) {
+        contentType(ContentType.Application.Json)
+        setBody(businessDay)
+    }
+}

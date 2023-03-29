@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import react.FC
 import react.Props
 import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.table
 import react.dom.html.ReactHTML.tbody
 import react.dom.html.ReactHTML.td
@@ -27,6 +28,9 @@ val logTable = FC<Props>{ props ->
         events = getEvents()
     }
     div {
+        h1 {
+            +("Event Log")
+        }
         className = ClassName("container")
         table {
             thead {
@@ -41,7 +45,10 @@ val logTable = FC<Props>{ props ->
                         +("Event")
                     }
                     th {
-                        +("Timestamp")
+                        +("Date")
+                    }
+                    th {
+                        +("Time")
                     }
                 }
             }
@@ -49,10 +56,10 @@ val logTable = FC<Props>{ props ->
                 for (event: TimeEvent in events) {
                     tr {
                         td {
-                            +(event.evt_id.toString())
+                            +(event.eventEmployee.user_id)
                         }
                         td {
-                            +(getName(employees, event.evt_id))
+                            +(event.eventEmployee.name)
                         }
                         td {
                             +(when(event.eventType) {
@@ -62,7 +69,10 @@ val logTable = FC<Props>{ props ->
                             })
                         }
                         td {
-                            +(event.dateTime.toString())
+                            +(event.date.toString())
+                        }
+                        td {
+                            +(event.time.toString())
                         }
                     }
                 }

@@ -60,12 +60,24 @@ kotlin {
                 implementation("io.ktor:ktor-server-compression:$ktorVersion")
                 implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
                 implementation("io.ktor:ktor-server-netty:$ktorVersion")
+                implementation("io.ktor:ktor-server-partial-content:$ktorVersion")
+                implementation("io.ktor:ktor-server-auto-head-response:$ktorVersion")
                 implementation("ch.qos.logback:logback-classic:$logbackVersion")
                 implementation("org.litote.kmongo:kmongo-coroutine-serialization:$kmongoVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+                implementation("org.apache.poi:poi:5.2.3")
+                implementation("org.apache.poi:poi-ooxml:5.2.3")
+                implementation("org.apache.logging.log4j:log4j-api:2.20.0")
+                implementation("org.apache.logging.log4j:log4j-core:2.20.0")
+
+
             }
         }
-        val jvmTest by getting
+        val jvmTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
         val jsMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-web:1.0.0-pre.510-compat")
@@ -112,4 +124,8 @@ tasks.getByName<Jar>("jvmJar") {
     val webpackTask = tasks.getByName<org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack>(taskName)
     dependsOn(webpackTask) // make sure JS gets compiled first
     from(File(webpackTask.destinationDirectory, webpackTask.outputFileName)) // bring output file along into the JAR
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

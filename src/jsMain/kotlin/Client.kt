@@ -22,8 +22,12 @@ fun App(): FC<Props> {
         BrowserRouter {
             Routes {
                 Route {
+                    index = true
+                    element = pages.homePage.create()
+                }
+                Route {
                     path = "clock"
-                    element = pages.clock.ClockPage.create()
+                    element = pages.clock.Clock.create()
                 }
                 Route {
                     path = "admin"

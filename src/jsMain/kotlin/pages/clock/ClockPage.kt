@@ -4,11 +4,14 @@ import EXIT
 import Employee
 import TimeEvent
 import csstype.ClassName
+import getEmployee
 import getEmployees
 import getEvents
 import kotlinx.browser.document
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.w3c.dom.HTMLFormElement
 import org.w3c.dom.HTMLInputElement
 import postEvent
@@ -17,13 +20,13 @@ import react.Props
 import react.dom.events.ChangeEventHandler
 import react.dom.events.FormEventHandler
 import react.dom.html.InputType
+import react.dom.html.ReactHTML
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.form
 import react.dom.html.ReactHTML.input
 import react.dom.html.ReactHTML.label
 import react.useState
 import scope
-
 
 val ClockPage = FC<Props> { props ->
     val (idText, otherText) = useState("")
@@ -39,7 +42,7 @@ val ClockPage = FC<Props> { props ->
         message.innerHTML = ""
             var success: Boolean = false
             scope.launch {
-                success = LogEvent(idText, employees, events)
+                success = LogEvent(idText, events)
                 if (success) {
                     var name = ""
                     for (employee: Employee in employees) {
@@ -61,7 +64,7 @@ val ClockPage = FC<Props> { props ->
     }
 
     form {
-        className = ClassName("container")
+        className = ClassName("mx-3 vstack gap-3")
         onSubmit = submitHandler
         label {
             htmlFor = "empid"
@@ -75,32 +78,50 @@ val ClockPage = FC<Props> { props ->
             type = InputType.text
             value = idText
         }
-        input {
-            className = ClassName("btn btn-primary")
-            type = InputType.submit
-            value = "Submit"
+        div {
+            className = ClassName("d-flex flex-row-reverse")
+            input {
+                className = ClassName("btn btn-primary")
+                id = "continue-button"
+                type = InputType.submit
+                value = "Login"
+            }
         }
+
     }
     div {
         id = "message"
         className = ClassName("container")
     }
 }
-suspend fun LogEvent(id: String, employees: List<Employee>, events: List<TimeEvent>): Boolean {
-    var found: Boolean = false
-    for (employee: Employee in employees) {
-        if (employee.user_id == id) {
-            found = true
-            break
+
+val Clock = FC<Props> {
+    div {
+        className = ClassName("background")
+        div {
+            className = ClassName("container flex-row my-5")
+            div {
+                id = "login-box"
+                ReactHTML.h1 {
+                    className = ClassName("text-center")
+                    id = "login-field-text"
+                    +("Login")
+                }
+                ClockPage { }
+            }
         }
     }
-    if (!found) {
+}
+
+suspend fun LogEvent(id: String, events: List<TimeEvent>): Boolean {
+    val employee: Employee? = getEmployee(id)
+    if (employee !is Employee) {
         return false
     }
     var eventType = ENTER
 
     for (lastEvent: TimeEvent in events.reversed()) {
-        val lastId = lastEvent.evt_id
+        val lastId = lastEvent.eventEmployee.user_id
         if (id == lastId) {
             if (lastEvent.eventType == ENTER) {
                 eventType = EXIT
@@ -109,9 +130,9 @@ suspend fun LogEvent(id: String, employees: List<Employee>, events: List<TimeEve
         }
     }
 
-    val dateTime = Clock.System.now().toString()
+    val dateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
-    postEvent(TimeEvent(id, eventType, dateTime))
+    postEvent(TimeEvent(employee, eventType, dateTime.date, dateTime.time))
 
     return true
 }

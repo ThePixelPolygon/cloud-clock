@@ -2,6 +2,7 @@ package me.matt.application
 
 import BusinessDay
 import Employee
+import ExportParams
 import TimeEvent
 import com.mongodb.ConnectionString
 import io.ktor.http.*
@@ -11,21 +12,42 @@ import io.ktor.server.engine.*
 import io.ktor.server.html.*
 import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.autohead.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.cors.routing.*
+import io.ktor.server.plugins.partialcontent.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.html.*
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
+import org.litote.kmongo.replaceUpsert
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 fun HTML.index() {
     head {
         title("Cloud Clock")
         link(rel = "stylesheet", href = "/static/css/bootstrap.css")
         link(rel = "stylesheet", href = "https://fonts.googleapis.com/icon?family=Material+Icons")
+        link(rel = "stylesheet", href = "/static/css/style.css")
         meta("viewport", "width=device-width, initial-scale=1")
+        link {
+            rel = "preconnect"
+            href = "https://fonts.googleapis.com"
+        }
+        link {
+            rel = "preconnect"
+            href = "https://fonts.gstatic.com"
+            attributes["crossorigin"] = "true"
+        }
+        link {
+            href = "https://fonts.googleapis.com/css2?family=Libre+Franklin&family=Red+Hat+Display:wght@600&display=swap"
+            rel = "stylesheet"
+        }
+
     }
     body {
         nav {
@@ -71,7 +93,6 @@ fun HTML.index() {
 
         }
         div {
-            classes = setOf("mt-5")
             id = "root"
         }
         script(src = "/static/js/bootstrap.bundle.js") {}
@@ -86,10 +107,12 @@ val connectionString: ConnectionString? = System.getenv("MONGODB_URI")?.let {
 
 val client = if (connectionString != null) KMongo.createClient(connectionString).coroutine
     else KMongo.createClient().coroutine
-val database = client.getDatabase("cloudclock")
+
+val database = client.getDatabase("cloudclock-debug")
 val employees = database.getCollection<Employee>("employee")
 
 val events = database.getCollection<TimeEvent>("events")
+val businessHours = database.getCollection<BusinessDay>("reghrs")
 
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8080
@@ -98,6 +121,8 @@ fun main() {
 }
 
 fun Application.myApplicationModule() {
+    install(PartialContent)
+    install(AutoHeadResponse)
     install(ContentNegotiation) {
         json()
     }
@@ -149,6 +174,40 @@ fun Application.myApplicationModule() {
                 employees.replaceOne("{ user_id: '${emp[0].user_id}' }", emp[1])
             }
         }
+        route("/exportsheet") {
+            post {
+                val requestParams = call.receive<ExportParams>()
+                val eventList = events.find().toList()
+
+                // TODO: Implement user-selectable filters
+                val empList = employees.find().toList()
+                try {
+                    val file = File("sheet.xlsx")
+                    val fileWriter = FileOutputStream(file)
+
+                    val spreadsheetWriter = SpreadsheetWriter()
+                    spreadsheetWriter.writeSpreadsheet(fileWriter, empList, eventList)
+                    call.respondText("/sheet")
+//                    call.response.header(
+//                        HttpHeaders.ContentDisposition,
+//                        ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName,
+//                            "Timesheet.xlsx").toString()
+//                    )
+//                    call.respondFile(file)
+                } catch (e: IOException) {
+                    call.respond(HttpStatusCode.InternalServerError)
+                }
+            }
+        }
+        get("/sheet") {
+            val file = File("sheet.xlsx")
+            call.response.header(
+                HttpHeaders.ContentDisposition,
+                ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName,
+                    "Timesheet.xlsx").toString()
+            )
+            call.respondFile(file)
+        }
         route(TimeEvent.path) {
             get {
                 call.respond(events.find().limit(10).toList())
@@ -160,11 +219,13 @@ fun Application.myApplicationModule() {
             }
         }
         route(BusinessDay.path) {
-            get {
-
+            put {
+                val day = call.receive<BusinessDay>()
+                businessHours.replaceOne("{\"day\": ${day.day}}", day, replaceUpsert())
+                call.respond(HttpStatusCode.OK)
             }
-            get("/{day}") {
-
+            get {
+                call.respond(businessHours.find().toList())
             }
         }
 //        get("/") {
