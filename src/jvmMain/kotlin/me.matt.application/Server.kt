@@ -35,6 +35,9 @@ fun HTML.index() {
         link(rel = "stylesheet", href = "https://fonts.googleapis.com/icon?family=Material+Icons")
         link(rel = "stylesheet", href = "/static/css/style.css")
         meta("viewport", "width=device-width, initial-scale=1")
+        style {
+            
+        }
     }
     body {
         nav {
