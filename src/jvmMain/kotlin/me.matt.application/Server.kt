@@ -105,6 +105,8 @@ val connectionString: ConnectionString? = System.getenv("MONGODB_URI")?.let {
     ConnectionString("$it&retryWrites=false")
 }
 
+val filePath: String = System.getenv("CC_WRITE_DIR") ?: "."
+
 val client = if (connectionString != null) KMongo.createClient(connectionString).coroutine
     else KMongo.createClient().coroutine
 
@@ -184,7 +186,7 @@ fun Application.myApplicationModule() {
                 // TODO: Implement user-selectable filters
                 val empList = employees.find().toList()
                 try {
-                    val file = File("sheet.xlsx")
+                    val file = File("${filePath}/sheet.xlsx")
                     val fileWriter = FileOutputStream(file)
 
                     val spreadsheetWriter = SpreadsheetWriter()
@@ -202,7 +204,7 @@ fun Application.myApplicationModule() {
             }
         }
         get("/sheet") {
-            val file = File("sheet.xlsx")
+            val file = File("${filePath}/sheet.xlsx")
             call.response.header(
                 HttpHeaders.ContentDisposition,
                 ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName,
