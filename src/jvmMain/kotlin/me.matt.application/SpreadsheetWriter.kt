@@ -57,7 +57,11 @@ class SpreadsheetWriter {
         }
 
         // Determine how many columns are needed to account for all time events
-        val maxCols: Int = listLengths.max() / 2
+        var maxCols: Int = 0
+        if (listLengths.size > 0) {
+            maxCols = listLengths.max() / 2
+        }
+
         row.createCell(0).setCellValue("Date")
 
         // Time headers
