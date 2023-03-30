@@ -98,9 +98,9 @@ val homePage = FC<Props> {
                         +("Choose ")
                         b {
                             className = ClassName("page-header")
-                            +("CloudClock")
+                            +("CloudClock ")
                         }
-                        +("for the ultimate time tracking and employee management solution for your" +
+                        +("for the ultimate time tracking and employee management solution for your " +
                                 "business.")
                     }
                     div {

@@ -12,7 +12,7 @@
 }
 
 body {
-    font-family: 'Libre Franklin', Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 .display-text-light {
@@ -22,7 +22,7 @@ body {
 
 h3 {
     font-size: 1.25em;
-    font-family: 'Red Hat Display';
+    font-family: 'Montserrat';
 }
 
 .title-heading {
@@ -31,13 +31,13 @@ h3 {
 
 h1 {
     font-size: 3em;
-    font-family: 'Red Hat Display';
+    font-family: 'Montserrat';
     font-weight: 600
 }
 
 h2 {
     font-size: 2em;
-    font-family: 'Red Hat Display';
+    font-family: 'Montserrat';
     font-weight: 500;
 }
 
@@ -53,7 +53,7 @@ h2 {
 
 .logo {
     font-size: 1.25em;
-    font-family: 'Red Hat Display';
+    font-family: 'Montserrat';
     font-weight: bold;
 }
 
